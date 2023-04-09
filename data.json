@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "name": "Dan",
+        "score": "-12",
+        "golfers": [
+            {
+                "id": 1,
+                "Name": "Justin Thomas"
+            },
+            {
+                "id": 2,
+                "Name": "Jordan Speith"
+            },
+            {
+                "id": 3,
+                "Name": "Jon Rahm"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Sean",
+        "score": "-10",
+        "golfers": [
+            {
+                "id": 1,
+                "Name": "Corey Conners"
+            },
+            {
+                "id": 2,
+                "Name": "Max Homa"
+            },
+            {
+                "id": 3,
+                "Name": "Jon Rahm"
+            }
+        ]
+    },    
+    {
+        "id": 3,
+        "name": "Jamie",
+        "score": "-9",
+        "golfers": [
+            {
+                "id": 1,
+                "Name": "Justin Thomas"
+            },
+            {
+                "id": 2,
+                "Name": "Jordan Speith"
+            },
+            {
+                "id": 3,
+                "Name": "Jon Rahm"
+            }
+        ]
+    }
+]
