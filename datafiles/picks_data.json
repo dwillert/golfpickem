@@ -1,0 +1,365 @@
+[
+    {
+        "id": 1,
+        "name": "Dan W",
+        "tiebreaker": -10,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Scottie Scheffler"
+            },
+            {
+                "id": 2,
+                "name": "Brooks Koepka"
+            },
+            {
+                "id": 3,
+                "name": "Viktor Hovland"
+            },
+            {
+                "id": 4,
+                "name": "Matthew Fitzpatrick"
+            },
+            {
+                "id": 5,
+                "name": "Nick Hardy"
+            },
+            {
+                "id": 6,
+                "name": "Victor Perez"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Sean R",
+        "tiebreaker": -12,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Xander Schauffele"
+            },
+            {
+                "id": 3,
+                "name": "Tyrrell Hatton"
+            },
+            {
+                "id": 4,
+                "name": "Denny McCarthy"
+            },
+            {
+                "id": 5,
+                "name": "Tom Hoge"
+            },
+            {
+                "id": 6,
+                "name": "Brandon Wu"
+            }
+        ]
+    },    
+    {
+        "id": 3,
+        "name": "Matt S",
+        "tiebreaker": -9,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Patrick Cantlay"
+            },
+            {
+                "id": 3,
+                "name": "Cameron Smith"
+            },
+            {
+                "id": 4,
+                "name": "Rickie Fowler"
+            },
+            {
+                "id": 5,
+                "name": "Tom Hoge"
+            },
+            {
+                "id": 6,
+                "name": "Thomas Detry"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Jordan B",
+        "tiebreaker": -12,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Xander Schauffele"
+            },
+            {
+                "id": 2,
+                "name": "Cameron Young"
+            },
+            {
+                "id": 3,
+                "name": "Sahith Theegala"
+            },
+            {
+                "id": 4,
+                "name": "Joaquin Niemann"
+            },
+            {
+                "id": 5,
+                "name": "Taylor Moore"
+            },
+            {
+                "id": 6,
+                "name": "Cam Davis"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Mitch L",
+        "tiebreaker": -8,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Brooks Koepka"
+            },
+            {
+                "id": 3,
+                "name": "Cameron Smith"
+            },
+            {
+                "id": 4,
+                "name": "Sam Burns"
+            },
+            {
+                "id": 5,
+                "name": "Tom Hoge"
+            },
+            {
+                "id": 6,
+                "name": "Aaron Wise"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Beecher C",
+        "tiebreaker": -12,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Brooks Koepka"
+            },
+            {
+                "id": 3,
+                "name": "Tommy Fleetwood"
+            },
+            {
+                "id": 4,
+                "name": "Viktor Hovland"
+            },
+            {
+                "id": 5,
+                "name": "Harold Varner"
+            },
+            {
+                "id": 6,
+                "name": "Matt Wallace"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Thomas L",
+        "tiebreaker": -12,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Scottie Scheffler"
+            },
+            {
+                "id": 2,
+                "name": "Cameron Young"
+            },
+            {
+                "id": 3,
+                "name": "Sunjae Im"
+            },
+            {
+                "id": 4,
+                "name": "Tyrrell Hatton"
+            },
+            {
+                "id": 5,
+                "name": "Cam Davis"
+            },
+            {
+                "id": 6,
+                "name": "Brendan Steele"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Michael P",
+        "tiebreaker": -5,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Cameron Young"
+            },
+            {
+                "id": 3,
+                "name": "Max Homa"
+            },
+            {
+                "id": 4,
+                "name": "Matthew Fitzpatrick"
+            },
+            {
+                "id": 5,
+                "name": "Matt Kuchar"
+            },
+            {
+                "id": 6,
+                "name": "Taylor Moore"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Nick W",
+        "tiebreaker": -10,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jon Rahm"
+            },
+            {
+                "id": 2,
+                "name": "Patrick Cantlay"
+            },
+            {
+                "id": 3,
+                "name": "Tyrrell Hatton"
+            },
+            {
+                "id": 4,
+                "name": "Max Homa"
+            },
+            {
+                "id": 5,
+                "name": "Taylor Moore"
+            },
+            {
+                "id": 6,
+                "name": "J.J. Spaun"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Ricky D",
+        "tiebreaker": -6,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jason Day"
+            },
+            {
+                "id": 2,
+                "name": "Brooks Koepka"
+            },
+            {
+                "id": 3,
+                "name": "Viktor Hovland"
+            },
+            {
+                "id": 4,
+                "name": "Max Homa"
+            },
+            {
+                "id": 5,
+                "name": "Adam Svensson"
+            },
+            {
+                "id": 6,
+                "name": "Victor Perez"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Sean P",
+        "tiebreaker": -7,
+        "score": 0,
+        "penalty": 0,
+        "golfers": [
+            {
+                "id": 1,
+                "name": "Jason Day"
+            },
+            {
+                "id": 2,
+                "name": "Brooks Koepka"
+            },
+            {
+                "id": 3,
+                "name": "Shane Lowry"
+            },
+            {
+                "id": 4,
+                "name": "Chris Kirk"
+            },
+            {
+                "id": 5,
+                "name": "Taylor Moore"
+            },
+            {
+                "id": 6,
+                "name": "Mark Hubbard"
+            }
+        ]
+    }
+]
