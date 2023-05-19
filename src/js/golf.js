@@ -55,6 +55,7 @@ var playerData = [];
 // };   
 
 let checkCreds = () => {
+    AWS.config.credentials = new AWS.EC2MetadataCredentials();
     AWS.config.getCredentials(function(err) {
       if (err) console.log(err.stack);
       // credentials not loaded
