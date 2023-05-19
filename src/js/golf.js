@@ -170,9 +170,14 @@ async function retrieveGolfData(){
         signatureVersion: 'v4',
         region: "us-east-1",
     });
+    s3Bucket.config.credentials = new AWS.EC2MetadataCredentials({
+        httpOptions: { timeout: 5000 }, // 5 second timeout
+        maxRetries: 10, // retry 10 times
+        retryDelayOptions: { base: 200 }, // see AWS.Config for information
+        logger: console // see AWS.Config for information
+      });
     console.log(s3Bucket.config.credentials)
     console.log(s3Bucket.config)
-    console.log(process.env.AWS_SDK_LOAD_CONFIG)
     const params = {
         Bucket: "willert-bucket",
         Expires: 3000,
