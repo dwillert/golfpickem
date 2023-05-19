@@ -1,4 +1,3 @@
-var AWS = require('aws-sdk');
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
 var liveLeaderboard = document.getElementById("liveLeaderboard")
