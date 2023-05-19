@@ -1,5 +1,4 @@
-const S3Client = require('@aws-sdk/client-s3')
-const { config } = require('aws-sdk')
+
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
 var liveLeaderboard = document.getElementById("liveLeaderboard")
@@ -167,14 +166,13 @@ let populateCard = () => {
 
 async function retrieveGolfData(){
     console.log("Running API")
-    const s3Client = new S3Client(config)
-    const args = {
-        Bucket: "willert-bucket",
-        Key: "Projects/GolfPickem/picks_data.json"
-    };
-    const command = new GetObjectCommand(args);
-    const response = await s3Client.send(command);
-    console.log(response)
+    const sts = new AWS.STS();
+    params = {RoleArn: "arn:aws:iam::518463288977:role/aws-elasticbeanstalk-ec2-role"}
+    sts.assumeRole(params, function (err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+      });
+
 
     const s3Bucket = new AWS.S3({ 
         apiVersion: '2006-03-01',
