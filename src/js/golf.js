@@ -171,6 +171,8 @@ async function retrieveGolfData(){
         region: "us-east-1",
     });
     console.log(s3Bucket.config.credentials)
+    console.log(s3Bucket.config)
+    console.log(process.env.AWS_SDK_LOAD_CONFIG)
     const params = {
         Bucket: "willert-bucket",
         Expires: 3000,
