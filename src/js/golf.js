@@ -166,6 +166,9 @@ let populateCard = () => {
 
 async function retrieveGolfData(){
     console.log("Running API")
+
+    const credentials = new AWS.Credentials.get()
+    console.log(credentials)
     const sts = new AWS.STS();
     var arn = {RoleArn: "arn:aws:iam::518463288977:role/aws-elasticbeanstalk-ec2-role", RoleSessionName: "s3AssumeRoleSession",}
     var creds = sts.assumeRole(arn, function (err, data) {
