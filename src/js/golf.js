@@ -1,3 +1,6 @@
+const { S3Client } = require("@aws-sdk/client-s3")
+const { config } = require("aws-sdk")
+
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
 var liveLeaderboard = document.getElementById("liveLeaderboard")
@@ -165,17 +168,20 @@ let populateCard = () => {
 
 async function retrieveGolfData(){
     console.log("Running API")
+    const s3Client = new S3Client(config)
+    const args = {
+        Bucket: "willert-bucket",
+        Key: "Projects/GolfPickem/picks_data.json"
+    };
+    const command = new GetObjectCommand(args);
+    const response = await s3Client.send(command);
+    console.log(response)
+
     const s3Bucket = new AWS.S3({ 
         apiVersion: '2006-03-01',
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    s3Bucket.config.credentials = new AWS.EC2MetadataCredentials({
-        httpOptions: { timeout: 5000 }, // 5 second timeout
-        maxRetries: 10, // retry 10 times
-        retryDelayOptions: { base: 200 }, // see AWS.Config for information
-        logger: console // see AWS.Config for information
-      });
     console.log(s3Bucket.config.credentials)
     console.log(s3Bucket.config)
     const params = {
