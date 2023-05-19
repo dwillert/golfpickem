@@ -54,15 +54,15 @@ var playerData = [];
 //     };
 // };   
 
-let checkCreds = () => {
-    AWS.config.getCredentials(function(err) {
-      if (err) console.log(err.stack);
-      // credentials not loaded
-      else {
-        console.log("Creds Found");
-      }
-    });
-};
+// let checkCreds = () => {
+//     AWS.config.getCredentials(function(err) {
+//       if (err) console.log(err.stack);
+//       // credentials not loaded
+//       else {
+//         console.log("Creds Found");
+//       }
+//     });
+// };
 
 let populateRank = () => {
     for(i=0;i<playerData.length;i++){
@@ -165,12 +165,12 @@ let populateCard = () => {
 
 async function retrieveGolfData(){
     console.log("Running API")
-    checkCreds()
-    const s3Bucket = new AWS.S3({  
+    const s3Bucket = new AWS.S3({ 
+        apiVersion: '2006-03-01',
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-
+    console.log(s3.config.credentials)
     const params = {
         Bucket: "willert-bucket",
         Expires: 3000,
