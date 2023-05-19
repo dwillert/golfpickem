@@ -170,7 +170,7 @@ async function retrieveGolfData(){
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    console.log(s3.config.credentials)
+    console.log(s3Bucket.config.credentials)
     const params = {
         Bucket: "willert-bucket",
         Expires: 3000,
