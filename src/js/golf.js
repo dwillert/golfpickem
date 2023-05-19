@@ -1,4 +1,5 @@
-import { S3Client } from "@aws-sdk/client-s3";
+const S3Client = require('@aws-sdk/client-s3')
+const { config } = require('aws-sdk')
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
 var liveLeaderboard = document.getElementById("liveLeaderboard")
