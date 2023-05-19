@@ -4,8 +4,7 @@
   "description": "golf app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "build": "webpack --config webpack.config.js"
+    "start": "node app.js"
   },
   "devDependencies": {
     "nodemon": "..."
@@ -23,13 +22,10 @@
   "dependencies": {
     "aws-sdk": "^2.1353.0",
     "axios": "^1.3.5",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "process": "^0.11.10",
-    "webpack": "^5.24.1"
+    "express": "^4.18.2"
   },
-  "engines" : { 
-    "npm" : ">=8.0.0 <9.0.0",
-    "node" : ">=18.0.0 <19.0.0"
+  "engines": {
+    "npm":">=9.0.0 <10.0.0",
+    "node":">=18.0.0 <19.0.0"
   }
 }
