@@ -200,7 +200,9 @@ async function retrieveGolfData(){
       });
 
     const url2 = await s3Bucket
-    .getSignedUrl("getObject", params2)
+    .getSignedUrl("getObject", params2, function (err, url2) {
+        console.log('The URL is', url2);
+      });
 
 
     const res = await axios.get(url, {
