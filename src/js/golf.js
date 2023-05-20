@@ -188,6 +188,9 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/golf_tournament_data.json", 
     };
+    s3Bucket.getObject(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);  
 
     const params2 = {
         Bucket: "willert-bucket",
