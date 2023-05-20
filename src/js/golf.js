@@ -167,17 +167,13 @@ let populateCard = () => {
 async function retrieveGolfData(){
     console.log("Running API")
 
-    const credentials = new AWS.Credentials()
-    credentialList = credentials.get()
-    console.log(credentials)
-    const sts = new AWS.STS();
-    var arn = {RoleArn: "arn:aws:iam::518463288977:role/aws-elasticbeanstalk-ec2-role", RoleSessionName: "s3AssumeRoleSession",}
-    var creds = sts.assumeRole(arn, function (err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);           // successful response
+    AWS.config.region = 'us-east-1'; // Region
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-east-1:c7fbde0b-bd35-4872-a018-8c5b469af387',
     });
+
     console.log("Done")
-    console.log(creds)
+    console.log(AWS.config.credentials)
 
 
     const s3Bucket = new AWS.S3({ 
