@@ -195,8 +195,9 @@ async function retrieveGolfData(){
         Key: "Projects/GolfPickem/picks_data.json", 
     };
     const url = await s3Bucket
-    .getSignedUrl("getObject",params)
-    console.log(url)
+    .getSignedUrl("getObject",params, function (err, url) {
+        console.log('The URL is', url);
+      });
 
     const url2 = await s3Bucket
     .getSignedUrl("getObject", params2)
