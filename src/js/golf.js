@@ -209,8 +209,6 @@ async function retrieveGolfData(){
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json',
-            withCredentials: true,
-            mode: 'no-cors',
         },
         responseType: 'json',
     });
