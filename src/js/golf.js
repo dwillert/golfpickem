@@ -190,7 +190,8 @@ async function retrieveGolfData(){
     };
     const answer = s3Bucket.getObject(params, function(err, data) {
         if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);  
+        else     console.log(data);
+    });  
     console.log(answer)
 
     const params2 = {
