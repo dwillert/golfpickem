@@ -201,6 +201,12 @@ async function retrieveGolfData(){
     .getSignedUrl("getObject", params2)
 
     const res = await axios.get(url, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+            withCredentials: true,
+            mode: 'no-cors',
+        },
         responseType: 'json',
     });
 
