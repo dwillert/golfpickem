@@ -164,6 +164,7 @@ let populateCard = () => {
     };
 };
 let setVars = (leaderboardInfo, tournamentInfo) => {
+    console.log("in callback")
     leaderboardData = leaderboardInfo;
     tournamentData = tournamentInfo;
 };
