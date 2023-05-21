@@ -235,13 +235,13 @@ async function retrieveGolfData(){
     });
 
     // console.log("MY URL: ",url)
-    const res = await axios.get(url, {
-        // headers: {
-        //     // 'Access-Control-Allow-Origin': '*',
-        //     'Content-Type': 'application/json',
-        // },
-        responseType: 'json',
-    });
+    // const res = await axios.get(url, {
+    //     // headers: {
+    //     //     // 'Access-Control-Allow-Origin': '*',
+    //     //     'Content-Type': 'application/json',
+    //     // },
+    //     responseType: 'json',
+    // });
 
     const res2 = await axios.get(url2, {
         headers: {
