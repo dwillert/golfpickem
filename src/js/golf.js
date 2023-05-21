@@ -209,8 +209,8 @@ async function retrieveGolfData(){
         console.log('The URL is', url2str);
       });
 
-    console.log("MY URL: ",url)
-    const res = await axios.get(url, {
+    console.log("MY URL: ",urlstr)
+    const res = await axios.get(urlstr, {
         // headers: {
         //     // 'Access-Control-Allow-Origin': '*',
         //     'Content-Type': 'application/json',
