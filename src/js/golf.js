@@ -243,13 +243,13 @@ async function retrieveGolfData(){
     //     responseType: 'json',
     // });
 
-    const res2 = await axios.get(url2, {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-        },
-        responseType: 'json',
-    });
+    // const res2 = await axios.get(url2, {
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     responseType: 'json',
+    // });
     // playerData = res2.data
     // console.log(playerData)
     // const golfData = res.data;
