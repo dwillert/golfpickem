@@ -199,17 +199,17 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    var urlstr = await s3Bucket.getSignedUrl("getObject",params, function (err, url) {
-        console.log('The URL is', url);
-    });
-    // const url = await s3Bucket
-    // .getSignedUrl("getObject",params, function (err, urlstr) {
-    //     console.log('The URL is', urlstr);
-    //     const answer = axios.get(urlstr, {responseType: 'json'});
-    //     console.log(answer);
-    //     return answer;
-    //   });
-    console.log("URL ", urlstr);
+    // var urlstr = await s3Bucket.getSignedUrl("getObject",params, function (err, url) {
+    //     console.log('The URL is', url);
+    // });
+    const url = await s3Bucket
+    .getSignedUrl("getObject",params, function (err, urlstr) {
+        console.log('The URL is', urlstr);
+        const answer = axios.get(urlstr, {responseType: 'json'});
+        console.log(answer);
+        return answer;
+      });
+    console.log("URL ", url);
     // console.log("ANSWER",answer);
 
     const url2 = await s3Bucket
