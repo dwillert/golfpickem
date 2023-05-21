@@ -199,7 +199,7 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    const url = await getUrl("willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
+    const url = await getUrl(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
 
     // var url = await s3Bucket.getSignedUrl("getObject",params);
     // const url = await s3Bucket
@@ -250,9 +250,9 @@ async function retrieveGolfData(){
     sortRank();
 };
 
-let getUrl = (bucket, key) => {
+let getUrl = (client, bucket, key) => {
     return new Promise((resolve, reject) =>{
-        this.s3Bucket.getSignedUrl('getObject', {
+        this.client.getSignedUrl('getObject', {
             Bucket: bucket, 
             Key: key,
             Expires: 3000
