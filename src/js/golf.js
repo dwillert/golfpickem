@@ -163,6 +163,10 @@ let populateCard = () => {
 
     };
 };
+let setVars = (leaderboardInfo, tournamentInfo) => {
+    leaderboardData = leaderboardInfo;
+    tournamentData = tournamentInfo;
+};
 
 async function getUrl(s3Bucket, params, dataType){
     s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
@@ -172,12 +176,13 @@ async function getUrl(s3Bucket, params, dataType){
                 console.log("result", result);
                 const golfData = result.data;
                 if(dataType === "api"){
-                    console.log("IN")
+                    console.log("INN")
                     console.log(golfData);
-                    leaderboardData = golfData["results"]["leaderboard"]
-                    tournamentData = golfData["results"]["tournament"]
-                    console.log(leaderboardData)
-                    console.log(tournamentData)
+                    leaderboardData = golfData["results"]["leaderboard"];
+                    tournamentData = golfData["results"]["tournament"];
+                    console.log(leaderboardData);
+                    console.log(tournamentData);
+                    return setVars(leaderboardData, tournamentData);
                 } else {
                     playerData = result.data
                     console.log(playerData)
