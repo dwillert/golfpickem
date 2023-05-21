@@ -170,8 +170,10 @@ async function getUrl(s3Bucket, params){
         axios.get(urlstr, {responseType: 'json'})
             .then((result) => {
                 console.log("result", result);
+                return result
             }).catch((err) => {
                 console.log("error", err);
+                return err
             });
             
     });
