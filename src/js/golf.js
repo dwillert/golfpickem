@@ -1,3 +1,4 @@
+const { default: axios } = require("axios")
 
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
@@ -199,13 +200,14 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    var url = await s3Bucket
+    const url = await s3Bucket
     .getSignedUrl("getObject",params, function (err, urlstr) {
         console.log('The URL is', urlstr);
+        axios.get(urlstr, {responseType: 'json'})
         return urlstr;
       });
 
-    var url2 = await s3Bucket
+    const url2 = await s3Bucket
     .getSignedUrl("getObject", params2, function (err, url2str) {
         console.log('The URL is', url2str);
         return url2str;
