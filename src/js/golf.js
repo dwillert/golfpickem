@@ -208,7 +208,7 @@ async function retrieveGolfData(){
     let url2 = await s3Bucket
     .getSignedUrl("getObject", params2, function (err, url2str) {
         console.log('The URL is', url2str);
-        return urlstr2;
+        return url2str;
       });
 
     console.log("MY URL: ",urlstr)
