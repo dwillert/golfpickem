@@ -199,7 +199,7 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    s3Bucket.getSignedUrl("getObject",params, function (err, url) {
+    var urlstr = s3Bucket.getSignedUrl("getObject",params, function (err, url) {
         console.log('The URL is', url);
     });
     // const url = await s3Bucket
@@ -209,7 +209,7 @@ async function retrieveGolfData(){
     //     console.log(answer);
     //     return answer;
     //   });
-    console.log("URL ", url);
+    console.log("URL ", urlstr);
     // console.log("ANSWER",answer);
 
     const url2 = await s3Bucket
