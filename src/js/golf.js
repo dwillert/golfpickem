@@ -181,7 +181,7 @@ async function retrieveGolfData(){
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    console.log(s3Bucket.config.credentials)
+    console.log("S3 Creds ", s3Bucket.config.credentials)
     console.log(s3Bucket.config)
     const params = {
         Bucket: "willert-bucket",
@@ -192,7 +192,7 @@ async function retrieveGolfData(){
         if (err) console.log(err, err.stack); // an error occurred
         else     console.log(data);
     });  
-    console.log(answer.body)
+    console.log(answer)
 
     const params2 = {
         Bucket: "willert-bucket",
