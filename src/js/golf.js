@@ -1,4 +1,3 @@
-const { default: axios } = require("axios")
 
 var playerInput = document.getElementById("rowData")
 var poolRank = document.getElementById("rank")
