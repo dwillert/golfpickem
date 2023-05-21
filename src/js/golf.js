@@ -204,8 +204,10 @@ async function retrieveGolfData(){
         console.log('The URL is', urlstr);
         const answer = axios.get(urlstr, {responseType: 'json'});
         console.log(answer);
-        return urlstr;
+        return answer;
       });
+    console.log("URL ", url);
+    console.log("ANSWER",answer);
 
     const url2 = await s3Bucket
     .getSignedUrl("getObject", params2, function (err, url2str) {
