@@ -209,7 +209,7 @@ async function retrieveGolfData(){
     //     return answer;
     //   });
     console.log("URL ", url);
-    console.log("ANSWER",answer);
+    // console.log("ANSWER",answer);
 
     const url2 = await s3Bucket
     .getSignedUrl("getObject", params2, function (err, url2str) {
