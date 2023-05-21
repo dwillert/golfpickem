@@ -170,10 +170,10 @@ async function getUrl(s3Bucket, params){
         axios.get(urlstr, {responseType: 'json'})
             .then((result) => {
                 console.log("result", result);
-                resolve(result);
+                return result;
             }).catch((err) => {
                 console.log("error", err);
-                return err
+                return err;
             });
             
     });
@@ -209,7 +209,9 @@ async function retrieveGolfData(){
     // });  
     // console.log(answer)
     let data = await getUrl(s3Bucket, params);
+    let data2 = resolve(data)
     console.log("DATA ", data)
+    console.log("DATA2 ", data2)
 
     const params2 = {
         Bucket: "willert-bucket",
