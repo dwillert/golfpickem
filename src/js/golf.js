@@ -164,13 +164,23 @@ let populateCard = () => {
     };
 };
 
-async function getUrl(s3Bucket, params){
+function getUrl(s3Bucket, params, dataType){
     s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
         axios.get(urlstr, {responseType: 'json'})
             .then((result) => {
                 console.log("result", result);
-                return result;
+                const golfData = result.data;
+                if(dataType === "api"){
+                    console.log(golfData);
+                    leaderboardData = golfData["results"]["leaderboard"]
+                    tournamentData = golfData["results"]["tournament"]
+                    console.log(leaderboardData)
+                    console.log(tournamentData)
+                } else {
+                    playerData = result.data
+                    console.log(playerData)
+                }
             }).catch((err) => {
                 console.log("error", err);
                 return err;
@@ -187,8 +197,8 @@ async function retrieveGolfData(){
         IdentityPoolId: 'us-east-1:c7fbde0b-bd35-4872-a018-8c5b469af387',
     });
 
-    console.log("Done")
-    console.log(AWS.config.credentials)
+    // console.log("Done")
+    // console.log(AWS.config.credentials)
 
 
     const s3Bucket = new AWS.S3({ 
@@ -196,8 +206,8 @@ async function retrieveGolfData(){
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    console.log("S3 Creds ", s3Bucket.config.credentials)
-    console.log(s3Bucket.config)
+    // console.log("S3 Creds ", s3Bucket.config.credentials)
+    // console.log(s3Bucket.config)
     const params = {
         Bucket: "willert-bucket",
         Expires: 3000,
@@ -208,7 +218,7 @@ async function retrieveGolfData(){
     //     else     console.log(data);
     // });  
     // console.log(answer)
-    let data = await getUrl(s3Bucket, params);
+    let data = await getUrl(s3Bucket, params, "api");
     console.log("DATA ", data)
 
     const params2 = {
@@ -253,6 +263,21 @@ async function retrieveGolfData(){
     // playerData = res2.data
     // console.log(playerData)
     // const golfData = res.data;
+    // const golfData = data.data;
+    // console.log(golfData);
+    // leaderboardData = golfData["results"]["leaderboard"]
+    // tournamentData = golfData["results"]["tournament"]
+    // console.log(leaderboardData)
+    // console.log(tournamentData)
+    assignTourName();
+    // populateTable();
+    populateCard();
+    renderLeaderboard();
+    addScores();
+    sortRank();
+};
+
+let runner = () => {
     const golfData = data.data;
     console.log(golfData);
     leaderboardData = golfData["results"]["leaderboard"]
@@ -265,8 +290,7 @@ async function retrieveGolfData(){
     renderLeaderboard();
     addScores();
     sortRank();
-};
-
+}
 
 
 let assignTourName = () => {
