@@ -164,7 +164,7 @@ let populateCard = () => {
     };
 };
 
-function getUrl(s3Bucket, params, dataType){
+async function getUrl(s3Bucket, params, dataType){
     s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
         axios.get(urlstr, {responseType: 'json'})
