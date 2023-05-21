@@ -193,13 +193,14 @@ async function retrieveGolfData(){
     //     else     console.log(data);
     // });  
     // console.log(answer)
+    const data = yield  getUrl(s3Bucket, params);
 
     const params2 = {
         Bucket: "willert-bucket",
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    var url = yield getUrl(s3Bucket, params)
+
     // var url = await s3Bucket.getSignedUrl("getObject",params);
     // const url = await s3Bucket
     // .getSignedUrl("getObject",params, function (err, urlstr) {
@@ -250,13 +251,16 @@ async function retrieveGolfData(){
 };
 
 async function getUrl(s3Bucket, params){
-    const data = await s3Bucket
-    .getSignedUrl("getObject",params, function (err, urlstr) {
+    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
-        const answer = axios.get(urlstr, {responseType: 'json'});
-        console.log(answer);
-        return answer;
-      });
+        axios.get(urlstr, {responseType: 'json'})
+            .then((result) => {
+                console.log("result", result);
+            }).catch((err) => {
+                console.log("error", err);
+            });
+            
+    });
 };
 
 let assignTourName = () => {
