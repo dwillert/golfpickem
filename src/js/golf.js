@@ -164,6 +164,19 @@ let populateCard = () => {
     };
 };
 
+async function getUrl(s3Bucket, params){
+    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
+        console.log('The URL is', urlstr);
+        axios.get(urlstr, {responseType: 'json'})
+            .then((result) => {
+                console.log("result", result);
+            }).catch((err) => {
+                console.log("error", err);
+            });
+            
+    });
+};
+
 async function retrieveGolfData(){
     console.log("Running API")
 
@@ -193,7 +206,7 @@ async function retrieveGolfData(){
     //     else     console.log(data);
     // });  
     // console.log(answer)
-    const data = yield  getUrl(s3Bucket, params);
+    const data = getUrl(s3Bucket, params);
     console.log(data)
 
     const params2 = {
@@ -251,18 +264,7 @@ async function retrieveGolfData(){
     sortRank();
 };
 
-async function getUrl(s3Bucket, params){
-    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
-        console.log('The URL is', urlstr);
-        axios.get(urlstr, {responseType: 'json'})
-            .then((result) => {
-                console.log("result", result);
-            }).catch((err) => {
-                console.log("error", err);
-            });
-            
-    });
-};
+
 
 let assignTourName = () => {
     console.log(tournamentData["name"]);
