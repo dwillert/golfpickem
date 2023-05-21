@@ -199,7 +199,9 @@ async function retrieveGolfData(){
         Expires: 3000,
         Key: "Projects/GolfPickem/picks_data.json", 
     };
-    var url = await s3Bucket.getSignedUrl("getObject",params);
+    const url = await getUrl("willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
+
+    // var url = await s3Bucket.getSignedUrl("getObject",params);
     // const url = await s3Bucket
     // .getSignedUrl("getObject",params, function (err, urlstr) {
     //     console.log('The URL is', urlstr);
@@ -248,6 +250,21 @@ async function retrieveGolfData(){
     sortRank();
 };
 
+let getUrl = (bucket, key) => {
+    return new Promise((resolve, reject) =>{
+        this.s3Bucket.getSignedUrl('getObject', {
+            Bucket: bucket, 
+            Key: key,
+            Expires: 3000
+        }, (err, url) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(url);
+            }
+        });
+    });
+};
 
 let assignTourName = () => {
     console.log(tournamentData["name"]);
