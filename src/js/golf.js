@@ -194,6 +194,7 @@ async function retrieveGolfData(){
     // });  
     // console.log(answer)
     const data = yield  getUrl(s3Bucket, params);
+    console.log(data)
 
     const params2 = {
         Bucket: "willert-bucket",
