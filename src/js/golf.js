@@ -208,7 +208,7 @@ async function retrieveGolfData(){
     //     else     console.log(data);
     // });  
     // console.log(answer)
-    const data = await getUrl(s3Bucket, params);
+    let data = await getUrl(s3Bucket, params);
     console.log("DATA ", data)
 
     const params2 = {
