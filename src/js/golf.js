@@ -172,6 +172,7 @@ function getUrl(s3Bucket, params, dataType){
                 console.log("result", result);
                 const golfData = result.data;
                 if(dataType === "api"){
+                    console.log("IN")
                     console.log(golfData);
                     leaderboardData = golfData["results"]["leaderboard"]
                     tournamentData = golfData["results"]["tournament"]
