@@ -209,9 +209,7 @@ async function retrieveGolfData(){
     // });  
     // console.log(answer)
     let data = await getUrl(s3Bucket, params);
-    let data2 = resolve(data)
     console.log("DATA ", data)
-    console.log("DATA2 ", data2)
 
     const params2 = {
         Bucket: "willert-bucket",
@@ -252,9 +250,10 @@ async function retrieveGolfData(){
         },
         responseType: 'json',
     });
-    playerData = res2.data
-    console.log(playerData)
-    const golfData = res.data;
+    // playerData = res2.data
+    // console.log(playerData)
+    // const golfData = res.data;
+    const golfData = data.data;
     console.log(golfData);
     leaderboardData = golfData["results"]["leaderboard"]
     tournamentData = golfData["results"]["tournament"]
