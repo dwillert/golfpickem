@@ -181,7 +181,7 @@ const retrieveGolfData = async () => {
 
     const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", "golf_tournament_data.json");
     console.log("OBJECT",golfData);
-    const playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
+    playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
     console.log("PLAYER OBJECT", playerData);
 
     leaderboardData = golfData["results"]["leaderboard"]
