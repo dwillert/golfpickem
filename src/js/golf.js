@@ -217,7 +217,7 @@ async function retrieveGolfData(){
     // console.log(s3Bucket.config)
     const params = {
         Bucket: "willert-bucket",
-        Expires: 3000,
+        // Expires: 3000,
         Key: "Projects/GolfPickem/golf_tournament_data.json", 
     };
     // const answer = s3Bucket.getObject(params, function(err, data) {
@@ -433,4 +433,5 @@ function openTab(tabName) {
     }
     document.getElementById(tabName).style.display = "block";
 }
+
 retrieveGolfData();
