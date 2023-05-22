@@ -196,6 +196,22 @@ async function getUrl(s3Bucket, params, dataType){
     });
 };
 
+const getObjectS3 = async (client, bucket, key) => {
+    try {
+        const params = {
+            Bucket: bucket,
+            Key: key
+        }
+        const data = await client.getObject(params).promise();
+        
+        let datastr = data.Body.toString('utf-8');
+        console.log(datastr);
+        return datastr;
+    } catch (e) {
+        throw new Error(`Could not retrieve file ${e.message}`)
+    }
+};
+
 async function retrieveGolfData(){
     console.log("Running API")
 
@@ -220,18 +236,24 @@ async function retrieveGolfData(){
         // Expires: 3000,
         Key: "Projects/GolfPickem/golf_tournament_data.json", 
     };
+    const myObject = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
+    console.log("OBJECT",myObject)
     // const answer = s3Bucket.getObject(params, function(err, data) {
     //     if (err) console.log(err, err.stack); // an error occurred
     //     else     console.log(data);
     // });  
-    const answer = s3Bucket.getObject(params, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else     console.log(data);
-        let objectData = data.Body.toString('utf-8');
-        obj_json = JSON.parse(objectData);
-        console.log(obj_json);
-        return obj_json;
-    });  
+    // TEST
+    // const answer = s3Bucket.getObject(params, function(err, data) {
+    //     if (err) console.log(err, err.stack); // an error occurred
+    //     else     console.log(data);
+    //     let objectData = data.Body.toString('utf-8');
+    //     obj_json = JSON.parse(objectData);
+    //     console.log(obj_json);
+    //     return obj_json;
+    // }); 
+    // END TEST
+    
+    
         // console.log(answer)
     // let data = await getUrl(s3Bucket, params, "api");
     
@@ -434,5 +456,8 @@ function openTab(tabName) {
     }
     document.getElementById(tabName).style.display = "block";
 }
+
+
+
 
 retrieveGolfData();
