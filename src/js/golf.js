@@ -194,14 +194,14 @@ const getData = async (url) => {
 };
 
 let getUrl = async (s3Bucket, params, dataType) => {
-    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
+    s3Bucket.getSignedUrl("getObject", params, async function (err, urlstr) {
         console.log('The URL is', urlstr);
-        const data = getData(urlstr);
+        const data =  await getData(urlstr);
         return data;
     });
 };
 
-async function retrieveGolfData(){
+let retrieveGolfData = async () => {
     console.log("Running API")
 
     AWS.config.region = 'us-east-1'; // Region
