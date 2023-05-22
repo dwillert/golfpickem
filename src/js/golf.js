@@ -205,8 +205,8 @@ const getObjectS3 = async (client, bucket, key) => {
         const data = await client.getObject(params).promise();
         
         let datastr = data.Body.toString('utf-8');
-        console.log(datastr);
-        return datastr;
+        let data_json = JSON.parse(datastr);
+        return data_json;
     } catch (e) {
         throw new Error(`Could not retrieve file ${e.message}`)
     }
