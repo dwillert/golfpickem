@@ -169,30 +169,35 @@ let setVars = (leaderboardInfo, tournamentInfo) => {
     tournamentData = tournamentInfo;
 };
 
-async function getUrl(s3Bucket, params, dataType){
+const getData = async (url) => {
+    axios.get(url, {responseType: 'json'})
+    .then((result) => {
+        // console.log("result", result);
+        // const golfData = result.data;
+        // if(dataType === "api"){
+        //     console.log("INN")
+        //     console.log(golfData);
+        //     leaderboardData = golfData["results"]["leaderboard"];
+        //     tournamentData = golfData["results"]["tournament"];
+        //     console.log(leaderboardData);
+        //     console.log(tournamentData);
+        //     return setVars(leaderboardData, tournamentData);
+        // } else {
+        //     playerData = result.data
+        //     console.log(playerData)
+        // }
+        return result.data
+    }).catch((err) => {
+        console.log("error", err);
+        return err;
+    });
+};
+
+function getUrl(s3Bucket, params, dataType){
     s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
-        axios.get(urlstr, {responseType: 'json'})
-            .then((result) => {
-                console.log("result", result);
-                const golfData = result.data;
-                if(dataType === "api"){
-                    console.log("INN")
-                    console.log(golfData);
-                    leaderboardData = golfData["results"]["leaderboard"];
-                    tournamentData = golfData["results"]["tournament"];
-                    console.log(leaderboardData);
-                    console.log(tournamentData);
-                    return setVars(leaderboardData, tournamentData);
-                } else {
-                    playerData = result.data
-                    console.log(playerData)
-                }
-            }).catch((err) => {
-                console.log("error", err);
-                return err;
-            });
-            
+        const data = getData(url);
+        return data;
     });
 };
 
@@ -226,14 +231,6 @@ async function retrieveGolfData(){
     // });  
     // console.log(answer)
     let data = await getUrl(s3Bucket, params, "api");
-    data.then(
-        function(value) { 
-            console.log("PROMISES")
-            console.log(value);
-
-        },
-        function(error) { console.log(error) }
-      )
     console.log("DATA ", data)
     console.log("LeaderBoard", leaderboardData)
 
