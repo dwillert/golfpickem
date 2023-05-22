@@ -196,7 +196,7 @@ const getData = async (url) => {
 function getUrl(s3Bucket, params, dataType){
     s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
-        const data = getData(url);
+        const data = getData(urlstr);
         return data;
     });
 };
