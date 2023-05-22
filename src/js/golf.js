@@ -236,8 +236,8 @@ async function retrieveGolfData(){
         // Expires: 3000,
         Key: "Projects/GolfPickem/golf_tournament_data.json", 
     };
-    const myObject = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
-    console.log("OBJECT",myObject)
+    const golfData = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
+    console.log("OBJECT",golfData)
     // const answer = s3Bucket.getObject(params, function(err, data) {
     //     if (err) console.log(err, err.stack); // an error occurred
     //     else     console.log(data);
@@ -257,8 +257,6 @@ async function retrieveGolfData(){
         // console.log(answer)
     // let data = await getUrl(s3Bucket, params, "api");
     
-    console.log("DATA ", answer)
-    console.log("LeaderBoard", leaderboardData)
 
     const params2 = {
         Bucket: "willert-bucket",
@@ -277,11 +275,11 @@ async function retrieveGolfData(){
     // console.log("URL ", url);
     // console.log("ANSWER",answer);
 
-    const url2 = await s3Bucket
-    .getSignedUrl("getObject", params2, function (err, url2str) {
-        console.log('The URL is', url2str);
-        return url2str;
-    });
+    // const url2 = await s3Bucket
+    // .getSignedUrl("getObject", params2, function (err, url2str) {
+    //     console.log('The URL is', url2str);
+    //     return url2str;
+    // });
 
     // console.log("MY URL: ",url)
     // const res = await axios.get(url, {
@@ -304,10 +302,10 @@ async function retrieveGolfData(){
     // const golfData = res.data;
     // const golfData = data.data;
     // console.log(golfData);
-    // leaderboardData = golfData["results"]["leaderboard"]
-    // tournamentData = golfData["results"]["tournament"]
-    // console.log(leaderboardData)
-    // console.log(tournamentData)
+    leaderboardData = golfData["results"]["leaderboard"]
+    tournamentData = golfData["results"]["tournament"]
+    console.log(leaderboardData)
+    console.log(tournamentData)
     assignTourName();
     // populateTable();
     populateCard();
