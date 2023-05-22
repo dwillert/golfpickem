@@ -236,8 +236,11 @@ async function retrieveGolfData(){
         // Expires: 3000,
         Key: "Projects/GolfPickem/golf_tournament_data.json", 
     };
-    const golfData = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json")
-    console.log("OBJECT",golfData)
+    const golfData = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/golf_tournament_data.json");
+    console.log("OBJECT",golfData);
+    const playerDataObj = await getObjectS3(s3Bucket, "willert-bucket", "Projects/GolfPickem/picks_data.json");
+    console.log("PLAYER OBJECT", playerDataObj);
+    playerData = playerDataObj;
     // const answer = s3Bucket.getObject(params, function(err, data) {
     //     if (err) console.log(err, err.stack); // an error occurred
     //     else     console.log(data);
