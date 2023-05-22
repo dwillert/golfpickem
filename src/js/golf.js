@@ -228,13 +228,14 @@ async function retrieveGolfData(){
         if (err) console.log(err, err.stack); // an error occurred
         else     console.log(data);
         let objectData = data.Body.toString('utf-8');
-        console.log(objectData)
-
+        obj_json = JSON.parse(objectData);
+        console.log(obj_json);
+        return obj_json;
     });  
         // console.log(answer)
     // let data = await getUrl(s3Bucket, params, "api");
     
-    console.log("DATA ", objectData)
+    console.log("DATA ", answer)
     console.log("LeaderBoard", leaderboardData)
 
     const params2 = {
