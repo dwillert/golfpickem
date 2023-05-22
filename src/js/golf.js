@@ -169,39 +169,34 @@ let setVars = (leaderboardInfo, tournamentInfo) => {
     tournamentData = tournamentInfo;
 };
 
-const getData = async (url) => {
-    axios.get(url, {responseType: 'json'})
-    .then((result) => {
-        // console.log("result", result);
-        // const golfData = result.data;
-        // if(dataType === "api"){
-        //     console.log("INN")
-        //     console.log(golfData);
-        //     leaderboardData = golfData["results"]["leaderboard"];
-        //     tournamentData = golfData["results"]["tournament"];
-        //     console.log(leaderboardData);
-        //     console.log(tournamentData);
-        //     return setVars(leaderboardData, tournamentData);
-        // } else {
-        //     playerData = result.data
-        //     console.log(playerData)
-        // }
-        return result.data
-    }).catch((err) => {
-        console.log("error", err);
-        return err;
-    });
-};
-
-let getUrl = async (s3Bucket, params, dataType) => {
-    s3Bucket.getSignedUrl("getObject", params, async function (err, urlstr) {
+async function getUrl(s3Bucket, params, dataType){
+    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
         console.log('The URL is', urlstr);
-        const data =  await getData(urlstr);
-        return data;
+        axios.get(urlstr, {responseType: 'json'})
+            .then((result) => {
+                console.log("result", result);
+                const golfData = result.data;
+                if(dataType === "api"){
+                    console.log("INN")
+                    console.log(golfData);
+                    leaderboardData = golfData["results"]["leaderboard"];
+                    tournamentData = golfData["results"]["tournament"];
+                    console.log(leaderboardData);
+                    console.log(tournamentData);
+                    return setVars(leaderboardData, tournamentData);
+                } else {
+                    playerData = result.data
+                    console.log(playerData)
+                }
+            }).catch((err) => {
+                console.log("error", err);
+                return err;
+            });
+            
     });
 };
 
-let retrieveGolfData = async () => {
+async function retrieveGolfData(){
     console.log("Running API")
 
     AWS.config.region = 'us-east-1'; // Region
@@ -229,9 +224,17 @@ let retrieveGolfData = async () => {
     //     if (err) console.log(err, err.stack); // an error occurred
     //     else     console.log(data);
     // });  
-    // console.log(answer)
-    let data = await getUrl(s3Bucket, params, "api");
-    console.log("DATA ", data)
+    const answer = s3Bucket.getObject(params, function(err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);
+        let objectData = data.Body.toString('utf-8');
+        console.log(objectData)
+
+    });  
+        // console.log(answer)
+    // let data = await getUrl(s3Bucket, params, "api");
+    
+    console.log("DATA ", objectData)
     console.log("LeaderBoard", leaderboardData)
 
     const params2 = {
