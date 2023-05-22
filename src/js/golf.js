@@ -55,15 +55,6 @@ var playerData = [];
 //     };
 // };   
 
-// let checkCreds = () => {
-//     AWS.config.getCredentials(function(err) {
-//       if (err) console.log(err.stack);
-//       // credentials not loaded
-//       else {
-//         console.log("Creds Found");
-//       }
-//     });
-// };
 
 let populateRank = () => {
     for(i=0;i<playerData.length;i++){
@@ -128,13 +119,10 @@ let populateCard = () => {
         // add row for player
         for (let j=0; j<playerData[i]["golfers"].length; j++){
             let trj = document.createElement("tr")
-            // let divGolfer = document.createElement("div");
             let tdplayer = document.createElement("td");
-            // let pGolfer = document.createElement("p");
             let tdScore = document.createElement("td");
             let tdThru = document.createElement("td");
 
-            // let pScore = document.createElement("p");
             let playerName = playerData[i]["golfers"][j]["name"];
             tdplayer.innerHTML = playerName
             let playerScore = assignScores(playerName);
@@ -144,13 +132,10 @@ let populateCard = () => {
             // pGolfer.innerHTML = `${playerName}`;
             // pScore.innerHTML = `Score: ${playerScore}`
             
-            // console.log("Done", playerName)
             trj.appendChild(tdplayer)
             trj.appendChild(tdScore)
             trj.appendChild(tdThru)
             
-            // divGolfer.appendChild(pGolfer);
-            // divGolfer.appendChild(pScore);
             tableCard.appendChild(trj);
         };
         addScores();
@@ -162,38 +147,6 @@ let populateCard = () => {
         playerCard.appendChild(licard)
 
     };
-};
-let setVars = (leaderboardInfo, tournamentInfo) => {
-    console.log("in callback")
-    leaderboardData = leaderboardInfo;
-    tournamentData = tournamentInfo;
-};
-
-async function getUrl(s3Bucket, params, dataType){
-    s3Bucket.getSignedUrl("getObject", params, function (err, urlstr) {
-        console.log('The URL is', urlstr);
-        axios.get(urlstr, {responseType: 'json'})
-            .then((result) => {
-                console.log("result", result);
-                const golfData = result.data;
-                if(dataType === "api"){
-                    console.log("INN")
-                    console.log(golfData);
-                    leaderboardData = golfData["results"]["leaderboard"];
-                    tournamentData = golfData["results"]["tournament"];
-                    console.log(leaderboardData);
-                    console.log(tournamentData);
-                    return setVars(leaderboardData, tournamentData);
-                } else {
-                    playerData = result.data
-                    console.log(playerData)
-                }
-            }).catch((err) => {
-                console.log("error", err);
-                return err;
-            });
-            
-    });
 };
 
 const getObjectS3 = async (client, bucket, key) => {
@@ -212,7 +165,7 @@ const getObjectS3 = async (client, bucket, key) => {
     }
 };
 
-async function retrieveGolfData(){
+const retrieveGolfData = async () => {
     console.log("Running API")
 
     AWS.config.region = 'us-east-1'; // Region
@@ -220,91 +173,17 @@ async function retrieveGolfData(){
         IdentityPoolId: 'us-east-1:c7fbde0b-bd35-4872-a018-8c5b469af387',
     });
 
-    // console.log("Done")
-    // console.log(AWS.config.credentials)
-
-
     const s3Bucket = new AWS.S3({ 
         apiVersion: '2006-03-01',
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    // console.log("S3 Creds ", s3Bucket.config.credentials)
-    // console.log(s3Bucket.config)
-    const params = {
-        Bucket: "willert-bucket",
-        // Expires: 3000,
-        Key: "Projects/GolfPickem/golf_tournament_data.json", 
-    };
+
     const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", "golf_tournament_data.json");
     console.log("OBJECT",golfData);
-    const playerDataObj = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
-    console.log("PLAYER OBJECT", playerDataObj);
-    playerData = playerDataObj;
-    // const answer = s3Bucket.getObject(params, function(err, data) {
-    //     if (err) console.log(err, err.stack); // an error occurred
-    //     else     console.log(data);
-    // });  
-    // TEST
-    // const answer = s3Bucket.getObject(params, function(err, data) {
-    //     if (err) console.log(err, err.stack); // an error occurred
-    //     else     console.log(data);
-    //     let objectData = data.Body.toString('utf-8');
-    //     obj_json = JSON.parse(objectData);
-    //     console.log(obj_json);
-    //     return obj_json;
-    // }); 
-    // END TEST
-    
-    
-        // console.log(answer)
-    // let data = await getUrl(s3Bucket, params, "api");
-    
+    const playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
+    console.log("PLAYER OBJECT", playerData);
 
-    const params2 = {
-        Bucket: "willert-bucket",
-        Expires: 3000,
-        Key: "Projects/GolfPickem/picks_data.json", 
-    };
-
-    // var url = await s3Bucket.getSignedUrl("getObject",params);
-    // const url = await s3Bucket
-    // .getSignedUrl("getObject",params, function (err, urlstr) {
-    //     console.log('The URL is', urlstr);
-    //     const answer = axios.get(urlstr, {responseType: 'json'});
-    //     console.log(answer);
-    //     return answer;
-    //   });
-    // console.log("URL ", url);
-    // console.log("ANSWER",answer);
-
-    // const url2 = await s3Bucket
-    // .getSignedUrl("getObject", params2, function (err, url2str) {
-    //     console.log('The URL is', url2str);
-    //     return url2str;
-    // });
-
-    // console.log("MY URL: ",url)
-    // const res = await axios.get(url, {
-    //     // headers: {
-    //     //     // 'Access-Control-Allow-Origin': '*',
-    //     //     'Content-Type': 'application/json',
-    //     // },
-    //     responseType: 'json',
-    // });
-
-    // const res2 = await axios.get(url2, {
-    //     headers: {
-    //         'Access-Control-Allow-Origin': '*',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     responseType: 'json',
-    // });
-    // playerData = res2.data
-    // console.log(playerData)
-    // const golfData = res.data;
-    // const golfData = data.data;
-    // console.log(golfData);
     leaderboardData = golfData["results"]["leaderboard"]
     tournamentData = golfData["results"]["tournament"]
     console.log(leaderboardData)
@@ -341,7 +220,6 @@ let assignScores = (player) => {
     let liveScore;
     for(i=0; i<leaderboardData.length; i++){
         if(player === `${leaderboardData[i]["first_name"]} ${leaderboardData[i]["last_name"]}`){
-            console.log("YES");
             score = leaderboardData[i]["total_to_par"];
             thru = leaderboardData[i]["holes_played"];
             cutStatus = leaderboardData[i]["status"];
@@ -368,7 +246,7 @@ let leaderboardCheck = (player) => {
         };
     };
     return unique;
-}
+};
 
 let populateLeaderboard = (liveScore) => {
     leaderBoard.push(liveScore)
@@ -416,7 +294,7 @@ let retrievePlayerData = (player) => {
         };
     };
     return scoreValue;
-}
+};
 
 let addScores = () => {
     let totalScore = 0;
@@ -441,24 +319,21 @@ function compare( a, b ) {
         return 1;
     }
     return 0;
-}
+};
 
 let sortRank = () => {
     playerData.sort(compare);
     console.log(playerData)
     populateRank();
-}
+};
 
 function openTab(tabName) {
     var i;
     var x = document.getElementsByClassName("tab");
     for (i = 0; i < x.length; i++) {
       x[i].style.display = "none";
-    }
+    };
     document.getElementById(tabName).style.display = "block";
-}
-
-
-
+};
 
 retrieveGolfData();

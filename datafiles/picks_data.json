@@ -363,39 +363,6 @@
     ]
   },
   {
-    "id": 11,
-    "name": "Sean P",
-    "tiebreaker": -7,
-    "score": 0,
-    "penalty": 0,
-    "golfers": [
-      {
-        "id": 1,
-        "name": "Jason Day"
-      },
-      {
-        "id": 2,
-        "name": "Brooks Koepka"
-      },
-      {
-        "id": 3,
-        "name": "Shane Lowry"
-      },
-      {
-        "id": 4,
-        "name": "Chris Kirk"
-      },
-      {
-        "id": 5,
-        "name": "Taylor Moore"
-      },
-      {
-        "id": 6,
-        "name": "Mark Hubbard"
-      }
-    ]
-  },
-  {
     "id": 12,
     "name": "Dawson F",
     "tiebreaker": -11,
