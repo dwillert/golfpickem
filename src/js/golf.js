@@ -126,7 +126,7 @@ let populateCard = () => {
 
             let playerName = playerData[i]["golfers"][j]["name"];
             let playerScore = assignScores(playerName);
-            if (playerScore.cutStatus === "cut"){
+            if (playerScore.status === "cut"){
                 tdplayer.innerHTML = `${playerName} (CUT)`
             } else {
                 tdplayer.innerHTML = playerName
