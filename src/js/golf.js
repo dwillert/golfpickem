@@ -125,8 +125,12 @@ let populateCard = () => {
             let tdThru = document.createElement("td");
 
             let playerName = playerData[i]["golfers"][j]["name"];
-            tdplayer.innerHTML = playerName
             let playerScore = assignScores(playerName);
+            if (playerScore.cutStatus === "cut"){
+                tdplayer.innerHTML = `${playerName} (CUT)`
+            } else {
+                tdplayer.innerHTML = playerName
+            };
             tdScore.innerHTML = playerScore.score
             tdThru.innerHTML = playerScore.thru
             // pGolfer.innerHTML = `${playerName} Score: ${playerScore.score} Thru: ${playerScore.thru}`;

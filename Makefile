@@ -6,6 +6,9 @@ create:
 deploy:
 	eb deploy
 
+teardown:
+	eb terminate golfpickem-dev
+
 start:
 	npm start
 	
