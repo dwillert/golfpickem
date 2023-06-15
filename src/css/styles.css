@@ -101,6 +101,20 @@ td {
   font-weight: 300;
 }
 
+#cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cardUser {
+  font-size: x-large;
+}
+
+#cardTotalScore {
+  font-size: large;
+}
+
 #cardHeader {
   font-weight: 500;
 }

@@ -84,12 +84,14 @@ let populateCard = () => {
         // tableCard.classList.add("")
         tableCard.setAttribute("class", "table table-striped table-responsive")
         let tr = document.createElement("tr");
+        tr.setAttribute("id", "cardTop")
         // let th = document.createElement("th");
         // Add Row Header
         // th.innerHTML = playerData[i]["id"];
         // tr.appendChild(th);
         // Add user
         let tdUser = document.createElement("th");
+        tdUser.setAttribute("id", "cardUser");
         tdUser.innerHTML = playerData[i]["name"];
         tr.appendChild(tdUser)
         // Add Score
@@ -152,6 +154,7 @@ let populateCard = () => {
         addScores();
         licard.appendChild(tableCard)
         let tdScore = document.createElement("th");
+        tdScore.setAttribute("id", "cardTotalScore")
         tdScore.innerHTML = playerData[i]["score"];
         tr.appendChild(tdScore)
         licard.appendChild(tr)
