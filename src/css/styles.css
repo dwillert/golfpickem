@@ -97,7 +97,16 @@ li{
 }
 
 td {
-  text-align: center
+  text-align: center;
+  font-weight: 300;
+}
+
+#cardHeader {
+  font-weight: 500;
+}
+
+#cut {
+  color: red;
 }
 
 @media (min-width: 40rem) {

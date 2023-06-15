@@ -82,6 +82,7 @@ let populateCard = () => {
         licard.classList.add("cards_item")
         let tableCard = document.createElement("table");
         // tableCard.classList.add("")
+        tableCard.setAttribute("class", "table table-striped table-responsive")
         let tr = document.createElement("tr");
         // let th = document.createElement("th");
         // Add Row Header
@@ -101,9 +102,13 @@ let populateCard = () => {
         // tr.appendChild(tdScore);
 
         let scoreHeader = document.createElement("tr");
+        // Write loop for this in future
         let tdHeader1 = document.createElement("td");
         let tdHeader2 = document.createElement("td");
-        let tdHeader3 = document.createElement("td");
+        let tdHeader3 = document.createElement("td")
+        tdHeader1.setAttribute("id", "cardHeader");
+        tdHeader2.setAttribute("id", "cardHeader");
+        tdHeader3.setAttribute("id", "cardHeader");
         tdHeader1.innerHTML = "Player";
         tdHeader2.innerHTML = "Score";
         tdHeader3.innerHTML = "Thru";
@@ -127,7 +132,8 @@ let populateCard = () => {
             let playerName = playerData[i]["golfers"][j]["name"];
             let playerScore = assignScores(playerName);
             if (playerScore.status === "cut"){
-                tdplayer.innerHTML = `${playerName} (CUT)`
+                tdplayer.innerHTML = `${playerName} (CUT: +${cutPenalty})`
+                tdplayer.setAttribute("id", "cut")
             } else {
                 tdplayer.innerHTML = playerName
             };
