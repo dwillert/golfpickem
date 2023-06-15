@@ -235,7 +235,11 @@ let assignScores = (player) => {
     for(i=0; i<leaderboardData.length; i++){
         if(player === `${leaderboardData[i]["first_name"]} ${leaderboardData[i]["last_name"]}`){
             score = leaderboardData[i]["total_to_par"];
-            thru = leaderboardData[i]["holes_played"];
+            if(leaderboardData[i]["holes_played"] === 0 && leaderboardData[i]["status"] === "complete"){
+                thru = "F";
+            } else {
+                thru = leaderboardData[i]["holes_played"];
+            }
             cutStatus = leaderboardData[i]["status"];
             rounds = leaderboardData[i]["rounds"];
             let liveScore = {"player": player, "score": score, "thru": thru, "status": cutStatus, "rounds": rounds};
