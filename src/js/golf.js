@@ -9,7 +9,7 @@ let tournamentData = {}
 let leaderboardData = {}
 let leaderBoard = []
 let userLeaderboard = []
-const cutPenalty = 10
+const cutPenalty = 2
 
 
 
@@ -305,7 +305,7 @@ let retrievePlayerData = (player) => {
     for(let i=0; i<leaderBoard.length;i++){
         if(player === leaderBoard[i]["player"]){
             if(leaderBoard[i]["status"] === "cut"){
-                scoreValue += cutPenalty;
+                scoreValue += cutPenalty*2;
             };
             scoreValue += leaderBoard[i]["score"];
             return scoreValue;
