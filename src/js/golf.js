@@ -136,11 +136,12 @@ let populateCard = () => {
             if (playerScore.status === "cut"){
                 tdplayer.innerHTML = `${playerName} (CUT: +${cutPenalty})`
                 tdplayer.setAttribute("id", "cut")
+                tdThru.innerHTML = "X"
             } else {
                 tdplayer.innerHTML = playerName
+                tdThru.innerHTML = playerScore.thru
             };
             tdScore.innerHTML = playerScore.score
-            tdThru.innerHTML = playerScore.thru
             // pGolfer.innerHTML = `${playerName} Score: ${playerScore.score} Thru: ${playerScore.thru}`;
             // pGolfer.innerHTML = `${playerName}`;
             // pScore.innerHTML = `Score: ${playerScore}`
