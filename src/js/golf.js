@@ -132,21 +132,18 @@ let populateCard = () => {
             let tdThru = document.createElement("td");
 
             let playerName = playerData[i]["golfers"][j]["name"];
-            let playerScore = assignScores(playerName);
+            let playerScore = assignScores(playerName, "card");
             if (playerScore.status === "cut"){
-                tdplayer.innerHTML = `${playerName} (CUT: +${cutPenalty})`
+                tdplayer.innerHTML = `${playerName}`
                 tdplayer.setAttribute("id", "cut")
                 tdThru.setAttribute("id", "cut")
                 tdScore.setAttribute("id", "cut")
-                tdThru.innerHTML = "-"
+                tdThru.innerHTML = `(CUT: +${cutPenalty})`
             } else {
                 tdplayer.innerHTML = playerName
                 tdThru.innerHTML = playerScore.thru
             };
             tdScore.innerHTML = playerScore.score
-            // pGolfer.innerHTML = `${playerName} Score: ${playerScore.score} Thru: ${playerScore.thru}`;
-            // pGolfer.innerHTML = `${playerName}`;
-            // pScore.innerHTML = `Score: ${playerScore}`
             
             trj.appendChild(tdplayer)
             trj.appendChild(tdScore)
@@ -233,26 +230,86 @@ let assignTourName = () => {
 //     };
 // };
 
-let assignScores = (player) => {
-    let liveScore;
+const assignScores = (player, type) => {
     for(i=0; i<leaderboardData.length; i++){
         if(player === `${leaderboardData[i]["first_name"]} ${leaderboardData[i]["last_name"]}`){
             score = leaderboardData[i]["total_to_par"];
+            cutStatus = leaderboardData[i]["status"];
+            rounds = leaderboardData[i]["rounds"];
+            position = leaderboardData[i]["position"];
+            chosenCount = 0
             if(leaderboardData[i]["holes_played"] === 0 && leaderboardData[i]["status"] === "complete"){
                 thru = "F";
+            } else if (leaderboardData[i]["holes_played"] === 0 && leaderboardData[i]["status"] === "cut"){
+                thru = "CUT";
             } else {
                 thru = leaderboardData[i]["holes_played"];
             }
-            cutStatus = leaderboardData[i]["status"];
-            rounds = leaderboardData[i]["rounds"];
-            let liveScore = {"player": player, "score": score, "thru": thru, "status": cutStatus, "rounds": rounds};
-            uniqueValue = leaderboardCheck(player)
-            if(uniqueValue == true){
-                populateLeaderboard(liveScore)
+            let liveScore = {"player": player, "score": score, "thru": thru, "status": cutStatus, "rounds": rounds, "chosenCount": chosenCount, "position": position};
+            if(type === "card"){
+                uniqueValue = leaderboardCheck(player)
+                if(uniqueValue == true){
+                    liveScore.chosenCount += 1
+                    populateLeaderboard(liveScore)
+                } else{
+                    updateLeaderboardCount(player)
+                };
+                return liveScore;
+            } else if(type === "leaderboard"){
+                uniqueValue = leaderboardCheck(player)
+                if(uniqueValue == true){
+                    populateLeaderboard(liveScore)
+                };
+                return true;
             };
-            return liveScore;
-        }
-    }
+        };
+    };
+    // if(type === "card"){
+    //     for(i=0; i<leaderboardData.length; i++){
+    //         if(player === `${leaderboardData[i]["first_name"]} ${leaderboardData[i]["last_name"]}`){
+    //             score = leaderboardData[i]["total_to_par"];
+    //             if(leaderboardData[i]["holes_played"] === 0 && leaderboardData[i]["status"] === "complete"){
+    //                 thru = "F";
+    //             } else {
+    //                 thru = leaderboardData[i]["holes_played"];
+    //             }
+    //             cutStatus = leaderboardData[i]["status"];
+    //             rounds = leaderboardData[i]["rounds"];
+    //             position = leaderboardData[i]["position"];
+    //             chosenCount = 0
+    //             let liveScore = {"player": player, "score": score, "thru": thru, "status": cutStatus, "rounds": rounds, "chosenCount": chosenCount, "position": position};
+    //             uniqueValue = leaderboardCheck(player)
+    //             if(uniqueValue == true){
+    //                 liveScore.chosenCount += 1
+    //                 populateLeaderboard(liveScore)
+    //             } else{
+    //                 updateLeaderboardCount(player)
+    //             };
+    //             return liveScore;
+    //         };
+    //     };
+    // } else if(type === "leaderboard"){
+    //     for(j=0; j<leaderboardData.length; j++){
+    //         if(player === `${leaderboardData[j]["first_name"]} ${leaderboardData[j]["last_name"]}`){
+    //             uniqueValue = leaderboardCheck(player)
+    //             if(uniqueValue == true){
+    //                 score = leaderboardData[j]["total_to_par"];
+    //                 if(leaderboardData[j]["holes_played"] === 0 && leaderboardData[j]["status"] === "complete"){
+    //                     thru = "F";
+    //                 } else {
+    //                     thru = leaderboardData[j]["holes_played"];
+    //                 }
+    //                 cutStatus = leaderboardData[j]["status"];
+    //                 rounds = leaderboardData[j]["rounds"];
+    //                 position = leaderboardData[j]["position"];
+    //                 chosenCount = 0
+    //                 let liveScore = {"player": player, "score": score, "thru": thru, "status": cutStatus, "rounds": rounds, "chosenCount": chosenCount, "position": position};
+    //                 populateLeaderboard(liveScore)
+    //             };
+    //             return true;
+    //         };
+    //     };
+    // };
     console.log("NO");
     liveScore = "ERR";
     return liveScore;
@@ -273,14 +330,33 @@ let populateLeaderboard = (liveScore) => {
     leaderBoard.push(liveScore)
 };
 
+let updateLeaderboardCount = (player) => {
+    for(i=0;i<leaderBoard.length;i++){
+        if(leaderBoard[i]["player"] === player){
+            leaderBoard[i]["chosenCount"] += 1;
+        }
+    }
+};
+
 let renderLeaderboard = () => {
-    leaderBoard.sort(compare);
+    // Start
+    console.log("RENDER: ",leaderboardData)
+
+    for(j=0;j<leaderboardData.length;j++){
+        console.log(`${leaderboardData[j]["first_name"]} ${leaderboardData[j]["last_name"]}`)
+        assignScores(`${leaderboardData[j]["first_name"]} ${leaderboardData[j]["last_name"]}`, "leaderboard");
+    };
+    // END
+    console.log("DONE")
+    leaderBoard.sort(compareRank);
     console.log(leaderBoard)
     for(i=0;i<leaderBoard.length;i++){
         let trLeader = document.createElement("tr");
         let tdLeader = document.createElement("td");
         let tdLeader2 = document.createElement("td");
         let tdLeader3 = document.createElement("td");
+        let tdLeader4 = document.createElement("td");
+        let tdLeader5 = document.createElement("td");
         let tdr1 = document.createElement("td");
         let tdr2 = document.createElement("td");
         let tdr3 = document.createElement("td");
@@ -289,12 +365,20 @@ let renderLeaderboard = () => {
         tdr2.innerHTML = leaderBoard[i]["rounds"][1]["strokes"];
         tdr3.innerHTML = leaderBoard[i]["rounds"][2]["strokes"];
         tdr4.innerHTML = leaderBoard[i]["rounds"][3]["strokes"];
-        tdLeader.innerHTML = leaderBoard[i]["player"];
-        tdLeader2.innerHTML = leaderBoard[i]["score"];
-        tdLeader3.innerHTML = leaderBoard[i]["thru"];
+        tdLeader.innerHTML = leaderBoard[i]["position"];
+        tdLeader2.innerHTML = leaderBoard[i]["player"];
+        tdLeader3.innerHTML = leaderBoard[i]["score"];
+        tdLeader4.innerHTML = leaderBoard[i]["thru"];
+        if(leaderBoard[i]["chosenCount"] != 0){
+            tdLeader5.innerHTML = leaderBoard[i]["chosenCount"];
+        } else {
+            tdLeader5.innerHTML = ""
+        };
         trLeader.appendChild(tdLeader);
         trLeader.appendChild(tdLeader2);
         trLeader.appendChild(tdLeader3);
+        trLeader.appendChild(tdLeader4);
+        trLeader.appendChild(tdLeader5);
         trLeader.appendChild(tdr1);
         trLeader.appendChild(tdr2);
         trLeader.appendChild(tdr3);
@@ -332,7 +416,17 @@ let addScores = () => {
     };
 };
 
-function compare( a, b ) {
+function compareRank( a, b ) {
+    if ( a.position < b.position ){
+        return -1;
+    }
+    if ( a.position > b.position ){
+        return 1;
+    }
+    return 0;
+};
+
+function compareScore( a, b ) {
     if ( a.score < b.score ){
         return -1;
     }
@@ -343,7 +437,7 @@ function compare( a, b ) {
 };
 
 let sortRank = () => {
-    playerData.sort(compare);
+    playerData.sort(compareScore);
     console.log(playerData)
     populateRank();
 };
