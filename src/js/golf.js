@@ -125,7 +125,6 @@ const getObjectS3 = async (client, bucket, key) => {
 };
 
 const retrieveGolfData = async () => {
-    console.log("Running API")
 
     AWS.config.region = 'us-east-1'; // Region
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -137,16 +136,13 @@ const retrieveGolfData = async () => {
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-
     const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", "golf_tournament_data.json");
-    console.log("OBJECT",golfData);
+    console.log("GOLF DATA",golfData);
     playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
-    console.log("PLAYER OBJECT", playerData);
+    console.log("PLAYER DATA", playerData);
 
     leaderboardData = golfData["results"]["leaderboard"]
     tournamentData = golfData["results"]["tournament"]
-    console.log(leaderboardData)
-    console.log(tournamentData)
     assignTourName();
     populateCard();
     renderLeaderboard();
@@ -194,7 +190,6 @@ const assignScores = (player, type) => {
             };
         };
     };
-    console.log("NO");
     liveScore = "ERR";
     return liveScore;
 };
@@ -224,7 +219,6 @@ let updateLeaderboardCount = (player) => {
 
 let renderLeaderboard = () => {
     for(j=0;j<leaderboardData.length;j++){
-        console.log(`${leaderboardData[j]["first_name"]} ${leaderboardData[j]["last_name"]}`)
         assignScores(`${leaderboardData[j]["first_name"]} ${leaderboardData[j]["last_name"]}`, "leaderboard");
     };
     leaderBoard.sort(compareRank);
@@ -316,7 +310,6 @@ function compareScore( a, b ) {
 
 let sortRank = () => {
     playerData.sort(compareScore);
-    console.log(playerData)
     populateRank();
 };
 
