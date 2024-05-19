@@ -10,7 +10,7 @@ let leaderboardData = {}
 let leaderBoard = []
 let userLeaderboard = []
 var playerData = [];
-const cutPenalty = 6
+const cutPenalty = 0
 
 let populateRank = () => {
     for(i=0;i<playerData.length;i++){
@@ -124,6 +124,21 @@ const getObjectS3 = async (client, bucket, key) => {
     }
 };
 
+// const listObjectsV2 = async (client, bucket) => {
+//     try {
+//         const params = {
+//             "Bucket": bucket,
+//         }
+//         const data = await client.listObjects(params).promise();
+        
+//         let datastr = data.Body.toString('utf-8');
+//         let data_json = JSON.parse(datastr);
+//         return data_json;
+//     } catch (e) {
+//         throw new Error(`Could not retrieve file ${e.message}`)
+//     }
+// };
+
 const retrieveGolfData = async () => {
 
     AWS.config.region = 'us-east-1'; // Region
@@ -136,6 +151,8 @@ const retrieveGolfData = async () => {
         signatureVersion: 'v4',
         region: "us-east-1",
     });
+    // const golf_files = await listObjectsV2(s3Bucket, "golfpickem-bucket")
+    // console.log(golf_files)
     const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", "golf_tournament_data.json");
     console.log("GOLF DATA",golfData);
     playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
