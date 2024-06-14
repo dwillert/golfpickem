@@ -115,7 +115,6 @@ const getObjectS3 = async (client, bucket, key) => {
             Key: key
         }
         const data = await client.getObject(params).promise();
-        
         let datastr = data.Body.toString('utf-8');
         let data_json = JSON.parse(datastr);
         return data_json;
@@ -124,20 +123,22 @@ const getObjectS3 = async (client, bucket, key) => {
     }
 };
 
-// const listObjectsV2 = async (client, bucket) => {
-//     try {
-//         const params = {
-//             "Bucket": bucket,
-//         }
-//         const data = await client.listObjects(params).promise();
-        
-//         let datastr = data.Body.toString('utf-8');
-//         let data_json = JSON.parse(datastr);
-//         return data_json;
-//     } catch (e) {
-//         throw new Error(`Could not retrieve file ${e.message}`)
-//     }
-// };
+const listObjectsV2 = async (client, bucket, prefix) => {
+    try {
+        const params = {
+            "Bucket": bucket,
+        }
+        const data = await client.listObjects(params).promise();
+        for (let i=0; i<data["Contents"].length; i++){
+            if (data["Contents"][i]["Key"].startsWith(prefix)){
+                return data["Contents"][i]["Key"]
+            }
+        }
+        return
+    } catch (e) {
+        throw new Error(`Could not retrieve file ${e.message}`)
+    }
+};
 
 const retrieveGolfData = async () => {
 
@@ -151,11 +152,11 @@ const retrieveGolfData = async () => {
         signatureVersion: 'v4',
         region: "us-east-1",
     });
-    // const golf_files = await listObjectsV2(s3Bucket, "golfpickem-bucket")
-    // console.log(golf_files)
-    const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", "golf_tournament_data.json");
+    const tourn_file = await listObjectsV2(s3Bucket, "golfpickem-bucket", "golf_tournament_data")
+    const picks_file = await listObjectsV2(s3Bucket, "golfpickem-bucket", "picks_data")
+    const golfData = await getObjectS3(s3Bucket, "golfpickem-bucket", tourn_file);
     console.log("GOLF DATA",golfData);
-    playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", "picks_data.json");
+    playerData = await getObjectS3(s3Bucket, "golfpickem-bucket", picks_file);
     console.log("PLAYER DATA", playerData);
 
     leaderboardData = golfData["results"]["leaderboard"]
