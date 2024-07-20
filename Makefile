@@ -7,7 +7,7 @@ deploy:
 	eb deploy
 
 teardown:
-	eb terminate golfpickem-dev
+	eb terminate golfpickem
 
 start:
 	npm start

@@ -10,7 +10,7 @@ let leaderboardData = {}
 let leaderBoard = []
 let userLeaderboard = []
 var playerData = [];
-const cutPenalty = 5
+const cutPenalty = 6
 
 let populateRank = () => {
     for(i=0;i<playerData.length;i++){
