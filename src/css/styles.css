@@ -32,11 +32,11 @@ body, html {
 }
 
 .nav-link {
-    color: #4CAF50
+    color: rgba(7,102,82)
 }
 
 button {
-    background-color: #4CAF50;;
+    background-color: rgba(7,102,82);;
     border: none;
     color: white;
     padding: 3px 10px;
@@ -44,6 +44,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-family: Georgia;
 }
 .cards {
   display: flex;
@@ -52,14 +53,13 @@ button {
   align-content: space-around;
   list-style: none;
   gap: 3rem;
-  margin: 1rem;
   padding: 2rem;
 }
 
 .cards_item {
   display: flex;
   flex-direction: column-reverse;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 *,
@@ -69,13 +69,14 @@ button {
 }
 
 tr, p{
-  padding: 1rem;
+  padding: 0rem;
   color: black;
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;    
   font-weight: 400;
   text-align: center;
+  font-family: Georgia;
 }
 
 th {
@@ -86,19 +87,35 @@ th {
   margin-bottom: 1.25rem;    
   font-weight: bold;
   text-align: center;
+  font-family: Georgia;
 }
 
 ul {
-  background-color:rgba(0, 0, 0, 0.5);
+  background-color:rgba(7,102,82);
 }
 
 li{
   background-color: white;
 }
 
-td {
+td, label, input {
   text-align: center;
   font-weight: 300;
+  font-family: Georgia;
+}
+
+#cardHeader{
+  font-size: large;
+  font-weight: 700;
+  border-bottom-width: 2px;
+  border-color: rgba(7,102,82);
+  border-bottom-style: solid;
+}
+
+#cardTotalScore {
+  font-size: xx-large;
+  font-weight: 500;
+
 }
 
 #cardTop {
@@ -109,11 +126,9 @@ td {
 
 #cardUser {
   font-size: x-large;
+  font-weight: 500;
 }
 
-#cardTotalScore {
-  font-size: large;
-}
 
 #cardHeader {
   font-weight: 500;
@@ -122,6 +137,7 @@ td {
 #cut {
   color: red;
 }
+
 
 @media (min-width: 40rem) {
   .cards_item {

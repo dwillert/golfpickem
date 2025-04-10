@@ -34,6 +34,7 @@ let populateRank = () => {
 let populateCard = () => {
     for(let i=0;i<playerData.length;i++){
         let licard = document.createElement("li");
+        licard.setAttribute("id", playerData[i]["id"]);
         licard.classList.add("cards_item")
         let tableCard = document.createElement("table");
         tableCard.setAttribute("class", "table table-striped table-responsive")
@@ -340,4 +341,17 @@ function openTab(tabName) {
     document.getElementById(tabName).style.display = "block";
 };
 
+function filterPlayers() {
+    const searchInput = document.getElementById("playerSearch").value.toLowerCase();
+    const cards = document.querySelectorAll("#player_cards > li"); // Select all <li> cards inside #player_cards
+
+    cards.forEach(card => {
+        const playerName = card.querySelector("#cardUser").textContent.toLowerCase(); // Get the player's name from the card
+        if (playerName.startsWith(searchInput)) {
+            card.style.display = ""; // Show the card if it matches the search
+        } else {
+            card.style.display = "none"; // Hide the card if it doesn't match
+        }
+    });
+}
 retrieveGolfData();
