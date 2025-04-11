@@ -131,6 +131,11 @@ td, label, input {
   font-weight: 500;
 }
 
+#cardInfo {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 #cardHeader {
   font-weight: 500;

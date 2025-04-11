@@ -48,6 +48,12 @@ let populateCard = () => {
         // add tiebreaker
         let pTiebreaker = document.createElement("p");
         pTiebreaker.innerHTML = `Tiebreaker: ${playerData[i]["tiebreaker"]}`;
+        let playerRank = document.createElement("p");
+        playerRank.innerHTML = `Current Place: ${playerData[i]["rank"]}`;
+        let playerInfo = document.createElement("div");
+        playerInfo.appendChild(pTiebreaker)
+        playerInfo.appendChild(playerRank)
+        playerInfo.setAttribute("id", "cardInfo")
 
         let scoreHeader = document.createElement("tr");
         // Write loop for this in future
@@ -67,7 +73,6 @@ let populateCard = () => {
         score_array = ["Player", "Score", "Thru"];
         
         tableCard.appendChild(tr)
-        tableCard.appendChild(pTiebreaker)
         tableCard.appendChild(scoreHeader)
         
         // add row for player
@@ -99,6 +104,7 @@ let populateCard = () => {
         };
         addScores();
         licard.appendChild(tableCard)
+        licard.appendChild(playerInfo)
         let tdScore = document.createElement("th");
         tdScore.setAttribute("id", "cardTotalScore")
         tdScore.innerHTML = playerData[i]["score"];
@@ -163,10 +169,10 @@ const retrieveGolfData = async () => {
     leaderboardData = golfData["results"]["leaderboard"]
     tournamentData = golfData["results"]["tournament"]
     assignTourName();
-    populateCard();
     renderLeaderboard();
     addScores();
     sortRank();
+    populateCard();
 };
 
 
@@ -329,6 +335,9 @@ function compareScore( a, b ) {
 
 let sortRank = () => {
     playerData.sort(compareScore);
+    for(i=0;i<playerData.length;i++){
+        playerData[i]["rank"] = i+1;
+    }
     populateRank();
 };
 
