@@ -32,11 +32,11 @@ body, html {
 }
 
 .nav-link {
-    color: rgba(7,102,82)
+    color: rgb(43,101,73)
 }
 
 button {
-    background-color: rgba(7,102,82);;
+    background-color: rgb(43,101,73);;
     border: none;
     color: white;
     padding: 3px 10px;
@@ -91,7 +91,7 @@ th {
 }
 
 ul {
-  background-color:rgba(7,102,82);
+  background-color:rgb(43,101,73);
 }
 
 li{
@@ -108,14 +108,16 @@ td, label, input {
   font-size: large;
   font-weight: 700;
   border-bottom-width: 2px;
-  border-color: rgba(7,102,82);
+  border-color: rgb(43,101,73);
   border-bottom-style: solid;
 }
 
 #cardTotalScore {
   font-size: xx-large;
   font-weight: 500;
-
+  color: rgb(43,101,73);
+  -webkit-text-stroke-color: rgb(248,228,76);
+  -webkit-text-stroke-width: 0.5px;
 }
 
 #cardTop {
@@ -138,6 +140,41 @@ td, label, input {
   color: red;
 }
 
+#searchRow {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5rem;
+}
+
+#tourName {
+  font-size: x-large;
+  font-weight: 500;
+  font-family: Georgia;
+}
+
+#playerSearch {
+  border: None;
+  border-bottom: 1px solid rgb(43,101,73);
+  align-items: left;
+  color: rgb(43,101,73)
+}
+
+#playerSearch:focus {
+  outline: none;
+}
+
+#material-icons {
+  color: rgb(43,101,73)
+}
+
+#icon-search{
+  font-family: "Icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+
+}
 
 @media (min-width: 40rem) {
   .cards_item {
