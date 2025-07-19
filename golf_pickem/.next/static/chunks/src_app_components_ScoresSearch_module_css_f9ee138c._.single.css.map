@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/app/components/ScoresSearch.module.css"],"sourcesContent":[".scoresSearch {\n  margin: 1rem;\n}\n\n.searchRow {\n  display: flex;\n  align-items: center;\n  margin-bottom: 1rem;\n}\n\n.searchInput {\n  flex: 1;\n  padding: 0.5rem;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 1rem;\n}\n\n.cards {\n  list-style: none;\n  padding: 0;\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 1rem;\n}\n\n.cardItem {\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  padding: 1rem;\n  background-color: #f9f9f9;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.cardHeader {\n  font-size: 1.25rem;\n  font-weight: bold;\n  margin-bottom: 0.5rem;\n}\n\n.cardInfo {\n  margin-bottom: 1rem;\n}\n\n.cardTable {\n  width: 100%;\n  border-collapse: collapse;\n}\n\n.cardTable th,\n.cardTable td {\n  border: 1px solid #ddd;\n  padding: 0.5rem;\n  text-align: left;\n}"],"names":[],"mappings":"AAAA;;;;AAIA;;;;;;AAMA;;;;;;;;AAQA;;;;;;;;AAQA;;;;;;;;AAQA;;;;;;AAMA;;;;AAIA;;;;;AAKA"}}]
+}

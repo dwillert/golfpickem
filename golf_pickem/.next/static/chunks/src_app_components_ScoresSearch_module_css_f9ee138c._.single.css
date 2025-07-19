@@ -1,0 +1,57 @@
+/* [project]/src/app/components/ScoresSearch.module.css [app-client] (css) */
+.ScoresSearch-module__Q1FicG__scoresSearch {
+  margin: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__searchRow {
+  align-items: center;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.ScoresSearch-module__Q1FicG__searchInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  padding: .5rem;
+  font-size: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__cards {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+
+.ScoresSearch-module__Q1FicG__cardItem {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.ScoresSearch-module__Q1FicG__cardHeader {
+  margin-bottom: .5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.ScoresSearch-module__Q1FicG__cardInfo {
+  margin-bottom: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__cardTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ScoresSearch-module__Q1FicG__cardTable th, .ScoresSearch-module__Q1FicG__cardTable td {
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: .5rem;
+}
+
+/*# sourceMappingURL=src_app_components_ScoresSearch_module_css_f9ee138c._.single.css.map*/

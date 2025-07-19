@@ -1,0 +1,3 @@
+{
+  "/api/aws/retrieveGolfData/route": "app/api/aws/retrieveGolfData/route.js"
+}

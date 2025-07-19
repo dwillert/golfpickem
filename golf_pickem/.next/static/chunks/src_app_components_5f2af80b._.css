@@ -1,0 +1,108 @@
+/* [project]/src/app/components/HeroSection.module.css [app-client] (css) */
+.HeroSection-module__pzGXVa__heroImage {
+  background-image: linear-gradient(#00000080, #00000080), url("/images/golf.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50%;
+  position: relative;
+}
+
+.HeroSection-module__pzGXVa__heroText {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.HeroSection-module__pzGXVa__title {
+  color: #fff;
+  font-family: Georgia, serif;
+}
+
+
+/* [project]/src/app/components/TabsNavigation.module.css [app-client] (css) */
+.TabsNavigation-module__r666wW__tabsBar {
+  background-color: #2b6549;
+  justify-content: space-around;
+  padding: 1rem;
+  display: flex;
+}
+
+.TabsNavigation-module__r666wW__tabButton {
+  color: #fff;
+  cursor: pointer;
+  background-color: #2b6549;
+  border: none;
+  padding: .5rem 1rem;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+}
+
+.TabsNavigation-module__r666wW__tabButton.TabsNavigation-module__r666wW__active {
+  color: #2b6549;
+  background-color: #fff;
+  font-weight: bold;
+}
+
+
+/* [project]/src/app/components/ScoresSearch.module.css [app-client] (css) */
+.ScoresSearch-module__Q1FicG__scoresSearch {
+  margin: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__searchRow {
+  align-items: center;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.ScoresSearch-module__Q1FicG__searchInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  padding: .5rem;
+  font-size: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__cards {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+}
+
+.ScoresSearch-module__Q1FicG__cardItem {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px #0000001a;
+}
+
+.ScoresSearch-module__Q1FicG__cardHeader {
+  margin-bottom: .5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.ScoresSearch-module__Q1FicG__cardInfo {
+  margin-bottom: 1rem;
+}
+
+.ScoresSearch-module__Q1FicG__cardTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ScoresSearch-module__Q1FicG__cardTable th, .ScoresSearch-module__Q1FicG__cardTable td {
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: .5rem;
+}
+
+
+/*# sourceMappingURL=src_app_components_5f2af80b._.css.map*/

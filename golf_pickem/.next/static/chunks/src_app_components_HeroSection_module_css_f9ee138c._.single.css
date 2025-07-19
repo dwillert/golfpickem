@@ -1,0 +1,25 @@
+/* [project]/src/app/components/HeroSection.module.css [app-client] (css) */
+.HeroSection-module__pzGXVa__heroImage {
+  background-image: linear-gradient(#00000080, #00000080), url("/images/golf.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50%;
+  position: relative;
+}
+
+.HeroSection-module__pzGXVa__heroText {
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.HeroSection-module__pzGXVa__title {
+  color: #fff;
+  font-family: Georgia, serif;
+}
+
+/*# sourceMappingURL=src_app_components_HeroSection_module_css_f9ee138c._.single.css.map*/
