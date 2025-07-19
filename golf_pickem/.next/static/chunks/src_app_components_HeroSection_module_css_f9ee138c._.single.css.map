@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/app/components/HeroSection.module.css"],"sourcesContent":[".heroImage {\n  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(\"/images/golf.jpg\");\n  height: 50%;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  position: relative;\n}\n\n.heroText {\n  text-align: center;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: white;\n}\n\n.title {\n  color: white;\n  font-family: Georgia, serif;\n}"],"names":[],"mappings":"AAAA;;;;;;;;;AASA;;;;;;;;;AASA"}}]
-}

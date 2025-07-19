@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/app/components/TabsNavigation.module.css"],"sourcesContent":[".tabsBar {\n  display: flex;\n  justify-content: space-around;\n  background-color: rgb(43, 101, 73);\n  padding: 1rem;\n}\n\n.tabButton {\n  background-color: rgb(43, 101, 73);\n  border: none;\n  color: white;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  font-family: Georgia, serif;\n  cursor: pointer;\n}\n\n.tabButton.active {\n  background-color: white;\n  color: rgb(43, 101, 73);\n  font-weight: bold;\n}"],"names":[],"mappings":"AAAA;;;;;;;AAOA;;;;;;;;;;AAUA"}}]
-}

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/app/components/LiveLeaderboardTable.module.css"],"sourcesContent":[".table {\n  width: 100%;\n  border-collapse: collapse;\n  margin: 1rem 0;\n}\n\n.table th,\n.table td {\n  border: 1px solid #ddd;\n  padding: 0.5rem;\n  text-align: left;\n}\n\n.table th {\n  background-color: #f4f4f4;\n  font-weight: bold;\n}\n\n.table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n\n.table tr:hover {\n  background-color: #f1f1f1;\n}"],"names":[],"mappings":"AAAA;;;;;;AAMA;;;;;;AAOA;;;;;AAKA;;;;AAIA"}}]
-}
