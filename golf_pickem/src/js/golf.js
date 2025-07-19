@@ -1,3 +1,4 @@
+
 export const calculatePlayerScore = (playerName, pickBoard, cutPenalty) => {
     let scoreValue = 0;
     for (let i = 0; i < pickBoard.length; i++) {
@@ -12,7 +13,7 @@ export const calculatePlayerScore = (playerName, pickBoard, cutPenalty) => {
     return scoreValue;
 };
 
-const addScores = () => {
+const addScores = (playerData) => {
     let totalScore = 0;
     for(let i=0;i<playerData.length;i++){
         for(let j=0; j<playerData[i]["golfers"].length;j++){
@@ -25,4 +26,18 @@ const addScores = () => {
         playerData[i]["score"] = totalScore;
         totalScore = 0;
     };
+};
+
+let retrievePlayerData = (player, leaderBoard) => {
+    let scoreValue = 0;
+    for(let i=0; i<leaderBoard.length;i++){
+        if(player === leaderBoard[i]["player"]){
+            if(leaderBoard[i]["status"] === "cut"){
+                scoreValue += cutPenalty*2;
+            };
+            scoreValue += leaderBoard[i]["score"];
+            return scoreValue;
+        };
+    };
+    return scoreValue;
 };

@@ -5,7 +5,6 @@ import TabsNavigation from "./components/TabsNavigation";
 import PoolRankTable from "./components/PoolRankTable";
 import ScoresSearch from "./components/ScoresSearch";
 import LiveLeaderboardTable from "./components/LiveLeaderboardTable";
-import { calculatePlayerScore } from "../js/golf";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("scoreLeaderboard");
