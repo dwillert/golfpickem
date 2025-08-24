@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <div>
-      <HeroSection />
+      <HeroSection tournament={tournamentData?.results?.tournament || {}}/>
       <TabsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="tab-content">
         {activeTab === "scoreLeaderboard" && <PoolRankTable players={picksData || []} leaderboard={tournamentData?.results?.leaderboard || []} />}

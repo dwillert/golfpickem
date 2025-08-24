@@ -25,7 +25,7 @@ const listObjectsV2 = async (bucket, prefix) => {
   return data.Contents.find((item) => item.Key.startsWith(prefix))?.Key;
 };
 
-export let cachedData = null;
+let cachedData = null;
 
 export async function GET() {
   try {
@@ -36,7 +36,7 @@ export async function GET() {
       const tournamentData = await getObjectS3('golfpickem-bucket', tournamentKey);
       const picksData = await getObjectS3('golfpickem-bucket', picksKey);
 
-      cachedData = { tournamentData, picksData }; // Cache the data
+      cachedData = { tournamentData, picksData };
     }
 
     return new Response(JSON.stringify(cachedData), {
