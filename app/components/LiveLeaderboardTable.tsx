@@ -6,7 +6,7 @@ type LeaderboardPlayer = {
   first_name: string;
   last_name: string;
   total_to_par: number;
-  holes_played: string;
+  holes_played: number;
   chosenCount: number;
   rounds: { strokes: number }[];
 };

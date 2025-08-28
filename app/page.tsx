@@ -6,9 +6,16 @@ import PoolRankTable from "./components/PoolRankTable";
 import ScoresSearch from "./components/ScoresSearch";
 import LiveLeaderboardTable from "./components/LiveLeaderboardTable";
 
+interface TournamentData {
+  results: {
+    tournament: Record<string, string | number | boolean>;
+    leaderboard: Array<{ first_name: string; last_name: string; total_to_par: number; position: string; rank: number; status: string; holes_played: number; rounds: { strokes: number }[]; chosenCount: number }>;
+  };
+}
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("scoreLeaderboard");
-  const [tournamentData, setTournamentData] = useState(null);
+  const [tournamentData, setTournamentData] = useState<TournamentData | null>(null);
   const [picksData, setPicksData] = useState(null);
 
   useEffect(() => {

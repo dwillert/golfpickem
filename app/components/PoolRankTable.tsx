@@ -7,7 +7,7 @@ type Player = {
   score: number;
   tiebreaker: string;
   golfers: { name: string; score: number; thru: string }[];
-};
+  };
 
 type LeaderBoard = {
   first_name: string;

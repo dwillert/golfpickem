@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Golf Pick 'Em</title>
+        <title>{`Golf Pick 'Em`}</title>
         <link rel="icon" href="/masters-logo-green.png" type="image/png" />
       </head>
       <body
