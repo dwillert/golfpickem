@@ -1,11 +1,11 @@
 branch-defaults:
   main:
-    environment: null
+    environment: golfpickem
 global:
   application_name: golfpickem
   branch: null
   default_ec2_keyname: null
-  default_platform: Node.js 22 AL2023 version 6.6.4
+  default_platform: Node.js 22 running on 64bit Amazon Linux 2023
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: arn:aws:iam::518463288977:role/aws-elasticbeanstalk-ec2-role
