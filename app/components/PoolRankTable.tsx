@@ -9,7 +9,7 @@ type Player = {
   golfers: { name: string; score: number; thru: string }[];
   };
 
-type LeaderBoard = {
+  type LeaderBoard = {
   first_name: string;
   last_name: string;
   total_to_par: number;
