@@ -3,7 +3,7 @@
   background-color: white;
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px white;
 }
 
 .searchRow {
@@ -84,4 +84,22 @@
 .cardTable th {
   background-color: rgb(43, 101, 73);
   color: white;
+}
+
+@media (max-width: 600px) {
+  .searchRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput {
+    margin-bottom: 0.5rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .cardTable td {
+    padding: 0.25rem;
+  }
 }

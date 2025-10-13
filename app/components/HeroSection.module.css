@@ -19,12 +19,18 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  
 }
 
 .title {
   color: white;
   font-family: Georgia;
   font-size: 2.5rem;
+    text-shadow: 
+    -1px -1px 0 rgb(43, 101, 73),  
+     1px -1px 0 rgb(43, 101, 73),
+    -1px  1px 0 rgb(43, 101, 73),
+     1px  1px 0 rgb(43, 101, 73);
 }
 
 /* Updated styling for the hero image to make it span the width of the screen and crop the top and bottom */
