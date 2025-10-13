@@ -1,37 +1,17 @@
-
-.next/
+# dependencies
 /node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-/coverage
-
-
-/build
-
-
+# misc
 .DS_Store
 *.pem
 
-
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
+# local env files
+.env*.local
 
-.env*
-.git
-
-.vercel
-
-
+# typescript
 *.tsbuildinfo
-next-env.d.ts
-
-.elasticbeanstalk/app_versions/*
