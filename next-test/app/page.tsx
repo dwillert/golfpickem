@@ -1,7 +1,16 @@
-export default function Home() {
+export const metadata = {
+  title: 'Next.js Test App',
+  description: 'Simple test app for Elastic Beanstalk deployment',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <main>
-      <h1>Hello from Next.js on Elastic Beanstalk</h1>
-    </main>
+    <html lang="en">
+      <body>{children}</body>
+    </html>
   )
 }
