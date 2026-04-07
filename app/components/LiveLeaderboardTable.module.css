@@ -39,6 +39,14 @@
   background-color: rgba(43, 101, 73, 0.2);
 }
 
+.cutPlayer {
+  color: red !important;
+}
+
+.cutPlayer:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
 /* Center the title and match the style */
 .title {
   font-size: 1.5rem;

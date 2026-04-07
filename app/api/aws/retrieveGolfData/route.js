@@ -27,9 +27,13 @@ const listObjectsV2 = async (bucket, prefix) => {
 
 let cachedData = null;
 
-export async function GET() {
+export async function GET(request) {
   try {
-    if (!cachedData) {
+    const { searchParams } = new URL(request.url);
+    const forceRefresh = searchParams.get('refresh') === 'true';
+
+    // Only use cache if not forcing refresh
+    if (!cachedData || forceRefresh) {
       const tournamentKey = await listObjectsV2('golfpickem-bucket', 'golf_tournament_data');
       const picksKey = await listObjectsV2('golfpickem-bucket', 'picks_data');
 

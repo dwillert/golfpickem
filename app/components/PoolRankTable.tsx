@@ -10,12 +10,11 @@ type Player = {
   };
 
   type LeaderBoard = {
-  first_name: string;
-  last_name: string;
-  total_to_par: number;
+  name: string;
+  score: number;
   rank: number;
   status: string;
-  holes_played: number;
+  thru: number;
   rounds: { strokes: number }[];
 }
 
@@ -28,8 +27,8 @@ const PoolRankTable: React.FC<PoolRankTableProps> = ({ players, leaderboard }) =
   
   const enrichedPlayers = players.map((player) => {
     const totalScore = player.golfers.reduce((golferSum, golfer) => {
-      const leaderboardGolfer = leaderboard.find((lbGolfer) => `${lbGolfer.first_name} ${lbGolfer.last_name}` === golfer.name);
-      const golferScore = leaderboardGolfer?.total_to_par || 0;
+      const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
+      const golferScore = leaderboardGolfer?.score || 0;
       return golferSum + golferScore;
     }, 0);
 

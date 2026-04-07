@@ -3,11 +3,10 @@ import styles from './LiveLeaderboardTable.module.css';
 
 type LeaderboardPlayer = {
   position: string;
-  first_name: string;
-  last_name: string;
-  total_to_par: number;
-  holes_played: number;
-  chosenCount: number;
+  name: string;
+  score: number;
+  thru: number;
+  status: string;
   rounds: { strokes: number }[];
 };
 
@@ -35,11 +34,11 @@ const LiveLeaderboardTable: React.FC<LiveLeaderboardTableProps> = ({ leaderboard
           </thead>
           <tbody>
             {Array.isArray(leaderboard) ? leaderboard.map((player, index) => (
-              <tr key={index}>
+              <tr key={index} className={player.status === "CUT" ? styles.cutPlayer : ""}>
                 <td>{player.position}</td>
-                <td>{`${player.first_name} ${player.last_name}`}</td>
-                <td>{player.total_to_par}</td>
-                <td>{player.holes_played}</td>
+                <td>{player.name}</td>
+                <td>{player.score}</td>
+                <td>{player.status === "CUT" ? "CUT" : player.thru}</td>
                 {player.rounds.map((round, roundIndex) => (
                   <td key={roundIndex}>{round.strokes}</td>
                 ))}

@@ -8,55 +8,67 @@ type Golfer = {
   score: number;
   tiebreaker: string;
   rank: number;
-  golfers: { name: string; score: number; thru: string }[];
+  golfers: { name: string; score: number; thru: string; status?: string }[];
 };
 
 type LeaderBoard = { //might have to fix
-    first_name: string;
-    last_name: string;
-    total_to_par: number;
+    name: string;
+    score: number;
     rank: number;
     status: string;
-    holes_played: number;
+    thru: number;
     rounds: { strokes: number }[];
 }
 
 type ScoresSearchProps = {
   players: Golfer[];
-  leaderboard: LeaderBoard[]; // Add the leaderboard prop
+  leaderboard: LeaderBoard[];
+  cutScore: number;
 };
 
-const ScoresSearch: React.FC<ScoresSearchProps> = ({ players, leaderboard }) => {
+const ScoresSearch: React.FC<ScoresSearchProps> = ({ players, leaderboard, cutScore }) => {
   const [searchInput, setSearchInput] = useState('');
 
-
-
   const enrichedPlayers = players.map((player) => {
-    const totalScore = player.golfers.reduce((golferSum, golfer) => {
-      const leaderboardGolfer = leaderboard.find((lbGolfer) => `${lbGolfer.first_name} ${lbGolfer.last_name}` === golfer.name);
-      const golferScore = leaderboardGolfer?.total_to_par || 0;
-      return golferSum + golferScore;
+    const originalScore = player.golfers.reduce((golferSum, golfer) => {
+      const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
+      return golferSum + (leaderboardGolfer?.score || 0);
     }, 0);
+
+    const cutPenaltyTotal = player.golfers.reduce((penaltySum, golfer) => {
+      const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
+      return penaltySum + (leaderboardGolfer?.status === 'CUT' ? cutScore * 2 : 0);
+    }, 0);
+
+    const totalScore = originalScore + cutPenaltyTotal;
 
     return {
       ...player,
-      score: totalScore, // Update the player's score based on the sum of golfer scores
+      score: totalScore,
       golfers: player.golfers.map((golfer) => {
-        const leaderboardGolfer = leaderboard.find((lbGolfer) => `${lbGolfer.first_name} ${lbGolfer.last_name}` === golfer.name);
+        const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
+        const isCut = leaderboardGolfer?.status === 'CUT';
         let holesPlayed;
 
-        if (leaderboardGolfer?.holes_played === 0 && leaderboardGolfer.status === "complete") {
-          holesPlayed = "F";
-        } else if (leaderboardGolfer?.holes_played === 0 && leaderboardGolfer.status === "cut") {
-          holesPlayed = "CUT";
+        if (leaderboardGolfer?.thru === 18 && leaderboardGolfer?.status === 'F') {
+          holesPlayed = 'F';
+        } else if (isCut) {
+          holesPlayed = 'CUT';
         } else {
-          holesPlayed = leaderboardGolfer?.holes_played;
+          holesPlayed = leaderboardGolfer?.thru?.toString() || '';
         }
+
+        const originalGolferScore = leaderboardGolfer?.score || 0;
+        const cutPenalty = isCut ? cutScore * 2 : 0;
+        const adjustedGolferScore = originalGolferScore + cutPenalty;
+        const golferScoreDisplay = isCut ? `${originalGolferScore} (+${cutPenalty})` : `${originalGolferScore}`;
 
         return {
           ...golfer,
-          score: leaderboardGolfer?.total_to_par,
+          score: adjustedGolferScore,
+          displayScore: golferScoreDisplay,
           thru: holesPlayed,
+          status: leaderboardGolfer?.status,
         };
       }),
     };
@@ -87,7 +99,7 @@ const ScoresSearch: React.FC<ScoresSearchProps> = ({ players, leaderboard }) => 
           <li key={player.id} className={styles.cardItem}>
             <div className={styles.cardHeader}>
               <div className={styles.cardHeader}>{player.name}</div>
-              <div className={styles.cardHeader}>{sortedPlayers.find((sortedPlayer) => sortedPlayer.id === player.id)?.score}</div>
+              <div className={styles.cardHeader}>{player.score}</div>
             </div>
             <div className={styles.cardInfo}>
               <p>Tiebreaker: {player.tiebreaker}</p>
@@ -105,9 +117,9 @@ const ScoresSearch: React.FC<ScoresSearchProps> = ({ players, leaderboard }) => 
                 {sortedPlayers
                   .find((sortedPlayer) => sortedPlayer.id === player.id)
                   ?.golfers.map((golfer, index) => (
-                    <tr key={index}>
+                    <tr key={index} className={golfer.status === "CUT" ? styles.cutRow : ""}>
                       <td>{golfer.name}</td>
-                      <td>{golfer.score}</td>
+                      <td>{golfer.displayScore || golfer.score}</td>
                       <td>{golfer.thru}</td>
                     </tr>
                   ))}

@@ -5,6 +5,7 @@ type TournamentDataProps = {
   tournament: {
     name?: string;
     course?: string;
+    cut_score?: number;
   };
 };
 
@@ -19,6 +20,9 @@ const HeroSection: React.FC<TournamentDataProps> = ({ tournament }) => {
       </div>
       <div className={styles.tournamentInfo}>
         <h2 className={styles.tournamentName}>{tournament.name} at {tournament.course}</h2>
+        {tournament.cut_score !== undefined && (
+          <div className={styles.cutScoreBadge}>Cut: {tournament.cut_score}</div>
+        )}
       </div>
     </div>
   );

@@ -42,11 +42,29 @@
   max-height: 25vh; /* Crop the top and bottom to show only half vertically */
 }
 
+/* Tournament info container with flex layout */
+.tournamentInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 /* Updated tournamentName style to match other styles */
 .tournamentName {
   font-size: 1.25rem;
   color: rgb(43, 101, 73);
-  text-align: left;
   margin-top: 0.5rem;
   font-family: Georgia, serif;
+}
+
+.cutScoreBadge {
+  background-color: rgba(43, 101, 73, 0.9);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  white-space: nowrap;
 }

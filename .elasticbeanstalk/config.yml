@@ -1,6 +1,6 @@
 branch-defaults:
   main:
-    environment: golfpickem-dev
+    environment: null
 global:
   application_name: golfpickem
   branch: null
