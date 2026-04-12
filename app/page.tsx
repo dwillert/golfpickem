@@ -38,7 +38,13 @@ export default function Home() {
       <HeroSection tournament={tournamentData?.tournament || {}} />
       <TabsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="tab-content">
-        {activeTab === "scoreLeaderboard" && <PoolRankTable players={picksData || []} leaderboard={tournamentData?.leaderboard || []} />}
+        {activeTab === "scoreLeaderboard" && (
+        <PoolRankTable
+          players={picksData || []} 
+          leaderboard={tournamentData?.leaderboard || []}
+          cutScore={typeof tournamentData?.tournament?.cut_score === 'number' ? tournamentData.tournament.cut_score : 0}
+        />
+      )}
         {activeTab === "scores" && (
         <ScoresSearch
           players={picksData || []}

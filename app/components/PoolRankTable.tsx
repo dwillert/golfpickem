@@ -21,20 +21,27 @@ type Player = {
 type PoolRankTableProps = {
   players: Player[];
   leaderboard: LeaderBoard[];
+  cutScore: number;
 };
 
-const PoolRankTable: React.FC<PoolRankTableProps> = ({ players, leaderboard }) => {
+const PoolRankTable: React.FC<PoolRankTableProps> = ({ players, leaderboard, cutScore }) => {
   
   const enrichedPlayers = players.map((player) => {
-    const totalScore = player.golfers.reduce((golferSum, golfer) => {
+    const originalScore = player.golfers.reduce((golferSum, golfer) => {
       const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
-      const golferScore = leaderboardGolfer?.score || 0;
-      return golferSum + golferScore;
+      return golferSum + (leaderboardGolfer?.score || 0);
     }, 0);
+
+    const cutPenaltyTotal = player.golfers.reduce((penaltySum, golfer) => {
+      const leaderboardGolfer = leaderboard.find((lbGolfer) => lbGolfer.name === golfer.name);
+      return penaltySum + (leaderboardGolfer?.status === 'CUT' ? cutScore * 2 : 0);
+    }, 0);
+
+    const totalScore = originalScore + cutPenaltyTotal;
 
     return {
       ...player,
-      score: totalScore, // Assign totalScore to player.score
+      score: totalScore,
     };
   });
 
